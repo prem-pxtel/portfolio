@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prem Patel's Portfolio</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e4b378 0%, #2d2212 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Add profile image from LinkedIn */
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #e4b378;
+            margin: 0 auto;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 50px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 26px;
+            color: #444;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .content {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            padding: 12px 25px 12px 50px;
+            border-radius: 5px;
+            margin: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+
+        /* Add hover effect */
+        .btn:hover {
+            background-color: #e4b378;
+            color: #2d2212;
+            transform: scale(1.05);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .linkedin {
+            background-color: #0077b5;
+        }
+
+        .github {
+            background-color: #333;
+        }
+
+        .resume {
+            background-color: #e4b378;
+        }
+
+        /* Icons for the buttons */
+        .btn::before {
+            content: '';
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .github::before {
+            background-image: url('https://cdn-icons-png.flaticon.com/512/25/25231.png'); /* GitHub icon */
+        }
+
+        .linkedin::before {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png'); /* LinkedIn icon */
+        }
+
+        .resume::before {
+            background-image: url('https://www.svgrepo.com/show/138917/download.svg'); /* Resume icon */
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #888;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Image -->
+        <img src="https://media.licdn.com/dms/image/v2/D4E03AQGzSZ5wwBnATA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1721255213105?e=1734566400&v=beta&t=BqGzTyG8q9ati-lamv8OQwz0iFjVM-vzAGiwrE-q8FY" alt="Prem Patel" class="profile-img">
+
+        <h1>Prem Patel</h1>
+        <h2>Aspiring Software Engineer, CS & Business Student</h2>
+        
+        <div class="content">
+            <p>Hi. I’m Prem, a passionate CS/BBA student at UWaterloo and WLU, with experience in full-stack development, low-level programming, and machine learning. I have worked on numerous projects, from developing Android applications to implementing complex predictive models.</p>
+            
+            <p>Explore my work, connect with me on LinkedIn, and feel free to view my resume for more details!</p>
+        </div>
+        
+        <div class="btn-container">
+            <a href="https://github.com/prem-pxtel" class="btn github">GitHub</a>
+            <a href="https://www.linkedin.com/in/prempatel149" class="btn linkedin">LinkedIn</a>
+            <a href="https://d3ey0ivtc68uxj.cloudfront.net/public/bdc736e25139f5f9cffd62e48af0809b.pdf" class="btn resume" style=color:black download>Resume</a>
+        </div>
+
+        <footer>
+            © 2024 Prem Patel
+        </footer>
+    </div>
+</body>
+</html>
