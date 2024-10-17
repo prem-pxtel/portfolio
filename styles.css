@@ -1,0 +1,123 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #e9d7be;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 40px;
+    max-width: 800px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Add profile image from LinkedIn */
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e6ba85;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-size: 50px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+h2 {
+    font-size: 26px;
+    color: #444;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.content {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.btn-container {
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    padding: 12px 25px 12px 50px;
+    border-radius: 5px;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+/* Add hover effect */
+.btn:hover {
+    background-color: #e6ba85;
+    color: #2d2212;
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.linkedin {
+    background-color: #0077b5;
+}
+
+.github {
+    background-color: #333;
+}
+
+.resume {
+    background-color: #e6ba85;
+    color: #2d2212;
+}
+
+/* Icons for the buttons */
+.btn::before {
+    content: '';
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.github::before {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/25/25231.png'); /* GitHub icon */
+}
+
+.linkedin::before {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png'); /* LinkedIn icon */
+}
+
+.resume::before {
+    background-image: url('https://www.svgrepo.com/show/138917/download.svg'); /* Resume icon */
+}
+
+footer {
+    margin-top: 40px;
+    font-size: 14px;
+    color: #888;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 0;
+}
