@@ -1,34 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prem Patel's Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Profile Image -->
-        <img src="https://media.licdn.com/dms/image/v2/D4E03AQGzSZ5wwBnATA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1721255213105?e=1752710400&v=beta&t=l0L6-q1QZ_47XXpv8jJIBZLlOti7p1EU2dQe_EUZ-uU" alt="Prem Patel" class="profile-img">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prem Patel | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+      html { scroll-behavior: smooth; }
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 1s forwards;
+      }
+      @keyframes fadeInUp {
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white font-sans">
+    
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6" id="home">
+      <img 
+        src="https://media.licdn.com/dms/image/v2/D4E03AQGzSZ5wwBnATA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1721255213084?e=2147483647&v=beta&t=ZUq5qcE60ugnlNbTrlAHoaUsCKRaEJieYfG2pgdjc1g" 
+        alt="Prem Patel"
+        class="w-32 h-32 rounded-full border-4 border-cyan-400 shadow-md fade-in"
+        style="animation-delay:0.2s"
+      />
+      <h1 class="text-5xl font-bold mt-6 fade-in" style="animation-delay:0.4s">Prem Patel</h1>
+      <h2 class="text-xl text-cyan-300 mt-2 fade-in" style="animation-delay:0.6s">
+        CS + Business @ Waterloo | Prev. Kinaxis, AutoTrader, D2L
+      </h2>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300 fade-in" style="animation-delay:0.8s">
+        I’m passionate about writing <span class="text-cyan-400 font-semibold">high-quality code</span>, uplifting those around me, 
+        and adapting in real time to the needs of a changing world.  
+        I’ve applied these principles to large-scale enterprise software, and I’m excited about 
+        new challenges in backend and full-stack development that help people organize ideas and work smarter.
+      </p>
 
-        <h1>Prem Patel</h1>
-        <h2>Aspiring Software Engineer, CS & Business Student</h2>
-        
-        <div class="content">
-            <p>Hi, I’m Prem, a dedicated CS/BBA student at the University of Waterloo and Wilfrid Laurier University (4A). I specialize in full-stack development, low-level programming, and machine learning. I’ve worked on a variety of projects, from developing Android applications to creating advanced predictive models, while continuously expanding my expertise.</p>
-            
-            <p>Feel free to explore my work, connect with me on LinkedIn, and view my resume for more details!</p>
-        </div>
-        
-        <div class="btn-container">
-            <a href="https://github.com/prem-pxtel" class="btn github">GitHub</a>
-            <a href="https://www.linkedin.com/in/prempatel149" class="btn linkedin">LinkedIn</a>
-            <a href="https://prem-pxtel.github.io/portfolio/docs/resume.pdf" class="btn resume" download>Resume</a>
-        </div>
+      <!-- Buttons -->
+      <div class="flex gap-4 mt-8 fade-in" style="animation-delay:1s">
+        <a href="https://github.com/prem-pxtel" target="_blank"
+           class="bg-slate-800 hover:bg-slate-700 px-5 py-3 rounded-xl shadow flex items-center gap-2 transition">
+           <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/prempatel149" target="_blank"
+           class="bg-blue-600 hover:bg-blue-500 px-5 py-3 rounded-xl shadow flex items-center gap-2 transition">
+           <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://prem-pxtel.github.io/portfolio/docs/resume.pdf" download
+           class="bg-cyan-500 hover:bg-cyan-400 px-5 py-3 rounded-xl shadow flex items-center gap-2 transition">
+           <i class="fas fa-file"></i> Resume
+        </a>
+      </div>
+    </section>
 
-        <footer>
-            © 2024 Prem Patel
-        </footer>
-    </div>
-</body>
+    <!-- Projects Section -->
+    <section class="px-6 py-20 max-w-6xl mx-auto" id="projects">
+      <h2 class="text-3xl font-bold text-center mb-12 text-cyan-400">
+        Featured Projects
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Project Card -->
+        <a href="https://github.com/prem-pxtel/NBA-Analytics-Dashboard" target="_blank" 
+           class="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition block">
+          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
+            <i class="fas fa-chart-line text-cyan-400"></i> NBA Analytics Dashboard
+          </h3>
+          <p class="text-slate-300">
+            Full-stack web app with React, Flask, and PostgreSQL. Designed optimized SQL, role-based auth, and visualized player stats.
+          </p>
+        </a>
+
+        <a href="https://git.uwaterloo.ca/tmanea/team-102-15" target="_blank" 
+           class="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition block">
+          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
+            <i class="fas fa-mobile-alt text-cyan-400"></i> Barber Review Mobile App
+          </h3>
+          <p class="text-slate-300">
+            Android app in Kotlin + Compose UI. Integrated Google Places API, Firebase authentication, and cloud data storage.
+          </p>
+        </a>
+
+        <a href="https://github.com/prem-pxtel/Predicting-Plant-Traits-CNN-Boosting" target="_blank" 
+           class="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition block">
+          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
+            <i class="fas fa-seedling text-cyan-400"></i> Predicting Plant Traits
+          </h3>
+          <p class="text-slate-300">
+            ML pipeline using PyTorch (ResNet50) + XGBoost. Bayesian optimization improved baseline performance by 192%.
+          </p>
+        </a>
+
+        <a href="https://github.com/amanda-guo/accessibility-checker" target="_blank" 
+           class="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition block">
+          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
+            <i class="fas fa-universal-access text-cyan-400"></i> AccChecky (HackThe6ix Winner)
+          </h3>
+          <p class="text-slate-300">
+            Web app that analyzed website accessibility with Taipy + Wave API, featuring real-time visualizations.
+          </p>
+        </a>
+
+        <a href="https://github.com/prem-pxtel/WLP4-Compiler" target="_blank" 
+           class="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition block md:col-span-2">
+          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
+            <i class="fas fa-terminal text-cyan-400"></i> Compiler & Assembler
+          </h3>
+          <p class="text-slate-300">
+            Implemented tokenization, parsing, type-checking, and code generation for WLP4 (C-like), plus a MIPS assembler — in C++.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-slate-400 text-sm">
+      © 2025 Prem Patel — Built with ❤️ + Tailwind
+    </footer>
+  </body>
 </html>
