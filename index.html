@@ -33,9 +33,7 @@
     <nav
       class="fixed w-full top-0 bg-slate-900/80 backdrop-blur-md shadow-md z-50"
     >
-      <div
-        class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center"
-      >
+      <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         <!-- Logo / Name -->
         <a
           href="#home"
@@ -79,25 +77,21 @@
         class="w-32 h-32 rounded-full border-4 border-cyan-400 shadow-md fade-in"
         style="animation-delay: 0.2s"
       />
-      <h1
-        class="text-5xl font-bold mt-6 fade-in"
-        style="animation-delay: 0.4s"
-      >
+      <h1 class="text-5xl font-bold mt-6 fade-in" style="animation-delay: 0.4s">
         Prem Patel
       </h1>
-      <h2
-        class="text-xl text-cyan-300 mt-2 fade-in"
-        style="animation-delay: 0.6s"
-      >
+      <h2 class="text-xl text-cyan-300 mt-2 fade-in" style="animation-delay: 0.6s">
         CS + Business @ Waterloo | Prev. Kinaxis, AutoTrader, D2L
       </h2>
       <p
         class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300 fade-in"
         style="animation-delay: 0.8s"
       >
-          I'm passionate about writing <span class="text-cyan-400 font-semibold">high-quality code</span>, uplifting my teammates, and adapting fast.
-          I’ve shipped large-scale backend systems in C++ and Python and built immersive full-stack applications.
-          I love problems where microseconds, memory layout, and concurrency matter.
+        I'm passionate about writing
+        <span class="text-cyan-400 font-semibold">high-quality code</span>,
+        uplifting my teammates, and adapting fast. I’ve shipped large-scale backend
+        systems in C++ and Python and built immersive full-stack applications. I
+        love problems where microseconds, memory layout, and concurrency matter.
       </p>
 
       <!-- Buttons -->
@@ -133,15 +127,32 @@
       </h2>
 
       <div class="grid md:grid-cols-2 gap-8">
-        <!-- Project Card -->
+        <!-- Instill -->
+        <a
+          href="https://github.com/prem-pxtel/instill"
+          target="_blank"
+          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:ring-2 hover:ring-cyan-400 hover:ring-offset-2 hover:ring-offset-slate-900 transition block"
+        >
+          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
+            <i class="fas fa-feather-alt text-cyan-400"></i> Instill (Offline-First
+            Journaling App)
+          </h3>
+          <p class="text-slate-300">
+            Offline-first journaling app in React Native + TypeScript with an
+            outbox-based sync engine, idempotent operations, and conflict-safe
+            merges to prevent data loss.
+            <span class="text-slate-400">(Jan 2026)</span>
+          </p>
+        </a>
+
+        <!-- NBA Analytics -->
         <a
           href="https://github.com/prem-pxtel/NBA-Analytics-Dashboard"
           target="_blank"
           class="bg-slate-800 rounded-2xl p-6 shadow-md hover:ring-2 hover:ring-cyan-400 hover:ring-offset-2 hover:ring-offset-slate-900 transition block"
         >
           <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
-            <i class="fas fa-chart-line text-cyan-400"></i> NBA Analytics
-            Dashboard
+            <i class="fas fa-chart-line text-cyan-400"></i> NBA Analytics Dashboard
           </h3>
           <p class="text-slate-300">
             Full-stack web app with React, Flask, and PostgreSQL. Designed
@@ -149,14 +160,14 @@
           </p>
         </a>
 
+        <!-- Barber Review Mobile App -->
         <a
           href="https://git.uwaterloo.ca/tmanea/team-102-15"
           target="_blank"
           class="bg-slate-800 rounded-2xl p-6 shadow-md hover:ring-2 hover:ring-cyan-400 hover:ring-offset-2 hover:ring-offset-slate-900 transition block"
         >
           <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
-            <i class="fas fa-mobile-alt text-cyan-400"></i> Barber Review Mobile
-            App
+            <i class="fas fa-mobile-alt text-cyan-400"></i> Barber Review Mobile App
           </h3>
           <p class="text-slate-300">
             Android app in Kotlin + Compose UI. Integrated Google Places API,
@@ -164,6 +175,7 @@
           </p>
         </a>
 
+        <!-- Predicting Plant Traits -->
         <a
           href="https://github.com/prem-pxtel/Predicting-Plant-Traits-CNN-Boosting"
           target="_blank"
@@ -178,6 +190,7 @@
           </p>
         </a>
 
+        <!-- AccChecky -->
         <a
           href="https://github.com/amanda-guo/accessibility-checker"
           target="_blank"
@@ -193,10 +206,11 @@
           </p>
         </a>
 
+        <!-- Compiler & Assembler (now same size as others) -->
         <a
           href="https://github.com/prem-pxtel/WLP4-Compiler"
           target="_blank"
-          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:ring-2 hover:ring-cyan-400 hover:ring-offset-2 hover:ring-offset-slate-900 transition block md:col-span-2"
+          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:ring-2 hover:ring-cyan-400 hover:ring-offset-2 hover:ring-offset-slate-900 transition block"
         >
           <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
             <i class="fas fa-terminal text-cyan-400"></i> Compiler & Assembler
@@ -211,39 +225,52 @@
 
     <!-- Experience Section -->
     <section class="px-6 py-20 max-w-6xl mx-auto" id="experience">
-    <div class="grid md:grid-cols-3 gap-8 text-center">
-
+      <div class="grid md:grid-cols-3 gap-8 text-center">
         <!-- Kinaxis -->
-        <div class="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition">
-        <div class="h-16 flex items-center justify-center mb-4">
-            <img src="https://www.kinaxis.com/sites/default/files/wysiwyg/Kinaxis_Logo_Single_Red.png" 
-                alt="Kinaxis Logo" class="max-h-full object-contain">
-        </div>
-        <h3 class="text-lg font-semibold">Software Engineer Intern</h3>
-        <p class="text-slate-400 text-sm">Jan 2025 – Present</p>
+        <div
+          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition"
+        >
+          <div class="h-16 flex items-center justify-center mb-4">
+            <img
+              src="https://www.kinaxis.com/sites/default/files/wysiwyg/Kinaxis_Logo_Single_Red.png"
+              alt="Kinaxis Logo"
+              class="max-h-full object-contain"
+            />
+          </div>
+          <h3 class="text-lg font-semibold">Software Engineer Intern</h3>
+          <p class="text-slate-400 text-sm">Jan 2025 – Present</p>
         </div>
 
         <!-- AutoTrader -->
-        <div class="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition">
-        <div class="h-16 flex items-center justify-center mb-4">
-            <img src="https://www.inmotionwrapslv.com/wp-content/uploads/2020/02/download-2.png" 
-                alt="AutoTrader Logo" class="max-h-full object-contain">
-        </div>
-        <h3 class="text-lg font-semibold">Software Engineer Intern</h3>
-        <p class="text-slate-400 text-sm">Jan – May 2024</p>
+        <div
+          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition"
+        >
+          <div class="h-16 flex items-center justify-center mb-4">
+            <img
+              src="https://www.inmotionwrapslv.com/wp-content/uploads/2020/02/download-2.png"
+              alt="AutoTrader Logo"
+              class="max-h-full object-contain"
+            />
+          </div>
+          <h3 class="text-lg font-semibold">Software Engineer Intern</h3>
+          <p class="text-slate-400 text-sm">Jan – May 2024</p>
         </div>
 
         <!-- D2L -->
-        <div class="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition">
-        <div class="h-16 flex items-center justify-center mb-4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/D2L_Logo.png" 
-                alt="D2L Logo" class="h-8 object-contain">
+        <div
+          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition"
+        >
+          <div class="h-16 flex items-center justify-center mb-4">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/4/44/D2L_Logo.png"
+              alt="D2L Logo"
+              class="h-8 object-contain"
+            />
+          </div>
+          <h3 class="text-lg font-semibold">Data Engineer Intern</h3>
+          <p class="text-slate-400 text-sm">Jan – Apr 2023</p>
         </div>
-        <h3 class="text-lg font-semibold">Data Engineer Intern</h3>
-        <p class="text-slate-400 text-sm">Jan – Apr 2023</p>
-        </div>
-
-    </div>
+      </div>
     </section>
 
     <!-- Footer -->
