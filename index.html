@@ -1,281 +1,918 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="blue">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prem Patel | Portfolio</title>
+
+    <!-- Tailwind + Icons -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+
     <style>
       html {
         scroll-behavior: smooth;
       }
+
+      /* ===== Tokens ===== */
+      :root {
+        --bg0: #070a0f;
+        --bg1: #0b1220;
+
+        --card: rgba(255, 255, 255, 0.06);
+        --border: rgba(255, 255, 255, 0.1);
+
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.66);
+
+        /* Keep it minimal: two close accents only */
+        --accent: #60a5fa; /* cyan */
+        --accent2: #60a5fa; /* soft blue */
+        --accent3: #22d3ee;
+      }
+
+      /* Optional warm mode stays supported */
+      html[data-theme="warm"] {
+        --bg0: #0b0b0a;
+        --bg1: #141210;
+        --card: rgba(255, 255, 255, 0.055);
+        --border: rgba(255, 255, 255, 0.1);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.66);
+        --accent: #e7d3a5;
+        --accent2: #f2c77b;
+      }
+
+      /* Subtle background: classy, not glowy */
+      body {
+        background: radial-gradient(
+            900px 500px at 50% 28%,
+            rgba(255, 255, 255, 0.055),
+            transparent 60%
+          ),
+          radial-gradient(
+            600px 420px at 18% 18%,
+            color-mix(in srgb, var(--accent2) 14%, transparent),
+            transparent 65%
+          ),
+          linear-gradient(180deg, var(--bg1), var(--bg0));
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+
+        /* hide scrollbar but keep scroll */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/old Edge */
+      }
+
+      body::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      } /* Chrome/Safari */
+
+      /* Subtle grain */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.06;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+        mix-blend-mode: overlay;
+      }
+
+      /* Reusable */
+      .glass {
+        background: var(--card);
+        border: 3px solid var(--border);
+        backdrop-filter: blur(14px);
+      }
+
+      .pill {
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .accent {
+        color: var(--accent);
+      }
+
+      /* Hover: subtle border highlight, no jump */
+      .hover-soft {
+        transition: border-color 0.18s ease, background 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      .hover-soft:hover {
+        border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+        background: rgba(255, 255, 255, 0.07);
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.32);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.75rem 1rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        transition: background 0.18s ease, border-color 0.18s ease;
+      }
+
+      .btn:hover {
+        background: rgba(255, 255, 255, 0.07);
+        border-color: color-mix(in srgb, var(--accent2) 40%, var(--border));
+      }
+
+      .btnPrimary {
+        background: color-mix(
+          in srgb,
+          var(--accent2) 22%,
+          rgba(255, 255, 255, 0.04)
+        );
+        border-color: color-mix(in srgb, var(--accent2) 40%, var(--border));
+      }
+
+      /* Typewriter */
+      .typewrap {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.2rem;
+      }
+
+      .caret {
+        width: 10px;
+        height: 1.15em;
+        background: var(--card);
+        display: inline-block;
+        transform: translateY(2px);
+        animation: blink 1s step-end infinite;
+        border-radius: 2px;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Fade-in */
       .fade-in {
         opacity: 0;
-        transform: translateY(20px);
-        animation: fadeInUp 1s forwards;
+        transform: translateY(14px);
+        animation: fadeInUp 0.9s forwards;
       }
+
       @keyframes fadeInUp {
         to {
           opacity: 1;
           transform: translateY(0);
         }
       }
+
+      /* Profile */
+      .pfp {
+        box-shadow: 0 0 0 10px
+            color-mix(in srgb, var(--accent2) 14%, transparent),
+          0 20px 80px rgba(0, 0, 0, 0.55);
+        border: 1px solid var(--border);
+      }
+
+      /* Section typography */
+      .sectionTitle {
+        letter-spacing: -0.02em;
+      }
+
+      .subtleRule {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.12),
+          transparent
+        );
+      }
+
+      /* Timeline */
+      .timeline {
+        position: relative;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 22px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .node {
+        position: relative;
+        padding-left: 64px;
+        padding-bottom: 26px;
+      }
+
+      .dot {
+        position: absolute;
+        left: 16px;
+        top: 10px;
+        width: 14px;
+        height: 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.02);
+      }
+
+      .dot::after {
+        content: "";
+        position: absolute;
+        inset: 3px;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--accent) 75%, transparent);
+        opacity: 0.85;
+      }
+
+      .logoBox {
+        width: 108px;
+        height: 108px;
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .logoBox img {
+        max-height: 78px;
+        max-width: 92px;
+        object-fit: contain;
+        filter: saturate(1.05);
+      }
+
+      /* Small tag chips */
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.28rem 0.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
+        font-size: 0.78rem;
+        color: var(--muted);
+      }
+
+      /* Hide scrollbar but keep scrolling (Chrome/Edge/Safari/Firefox) */
+      html,
+      body {
+        -ms-overflow-style: none; /* IE/old Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+
+      html::-webkit-scrollbar,
+      body::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+
+      /* Extra-safe: hides scrollbars on any scrollable container */
+      *::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+
+      * {
+        scrollbar-width: none; /* Firefox */
+      }
     </style>
   </head>
-  <body
-    class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white font-sans"
-  >
-    <!-- Navbar -->
-    <nav
-      class="fixed w-full top-0 bg-slate-900/80 backdrop-blur-md shadow-md z-50"
-    >
-      <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <!-- Logo / Name -->
-        <a
-          href="#home"
-          class="text-xl font-bold text-cyan-400 hover:text-cyan-300"
-          >Prem Patel</a
-        >
 
-        <!-- Links -->
-        <div class="hidden md:flex gap-8 text-slate-300 font-medium">
-          <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
-          <a href="#experience" class="hover:text-cyan-400 transition"
-            >Experience</a
+  <body>
+    <!-- Navbar -->
+    <nav class="fixed w-full top-0 z-50">
+      <div class="max-w-6xl mx-auto px-6 pt-4">
+        <div
+          id="topbar"
+          class="glass hover-soft rounded-2xl px-5 py-3 flex justify-between items-center"
+          style="cursor: pointer"
+        >
+          <a href="#home" class="font-semibold tracking-tight">
+            <span class="accent">Prem</span> Patel
+          </a>
+
+          <div
+            class="hidden md:flex items-center gap-6 text-sm"
+            style="color: var(--muted)"
           >
-          <a
-            href="https://prem-pxtel.github.io/portfolio/docs/Prem_Patel_Resume.pdf"
-            target="_blank"
-            class="hover:text-cyan-400 transition"
-            >Resume</a
-          >
-          <a
-            href="https://www.linkedin.com/in/prempatel149"
-            target="_blank"
-            class="hover:text-cyan-400 transition"
-            >Contact</a
-          >
+            <a href="#projects" class="hover:opacity-100 opacity-80 transition"
+              >Projects</a
+            >
+            <a href="#experience" class="hover:opacity-100 opacity-80 transition"
+              >Experience</a
+            >
+            <a
+              href="https://prem-pxtel.github.io/portfolio/docs/Prem_Patel_Resume.pdf"
+              target="_blank"
+              class="hover:opacity-100 opacity-80 transition"
+              >Resume</a
+            >
+            <a
+              href="https://www.linkedin.com/in/prempatel149"
+              target="_blank"
+              class="btn btnPrimary"
+            >
+              <i class="fab fa-linkedin"></i> Contact
+            </a>
+          </div>
         </div>
       </div>
     </nav>
 
-    <!-- Spacer for fixed navbar -->
-    <div class="h-20"></div>
+    <div class="h-24"></div>
 
-    <!-- Hero Section -->
-    <section
-      class="min-h-[calc(100vh-10rem)] flex flex-col justify-center items-center text-center px-6"
-      id="home"
-    >
-      <img
-        src="https://media.licdn.com/dms/image/v2/D4E03AQGzSZ5wwBnATA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1721255213084?e=2147483647&v=beta&t=ZUq5qcE60ugnlNbTrlAHoaUsCKRaEJieYfG2pgdjc1g"
-        alt="Prem Patel"
-        class="w-32 h-32 rounded-full border-4 border-cyan-400 shadow-md fade-in"
-        style="animation-delay: 0.2s"
-      />
-      <h1 class="text-5xl font-bold mt-6 fade-in" style="animation-delay: 0.4s">
-        Prem Patel
-      </h1>
-      <h2 class="text-xl text-cyan-300 mt-2 fade-in" style="animation-delay: 0.6s">
-        CS + Business @ Waterloo | Prev. Kinaxis, AutoTrader, D2L
-      </h2>
-      <p
-        class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300 fade-in"
-        style="animation-delay: 0.8s"
+    <!-- Hero -->
+    <section id="home" class="min-h-[calc(100vh-8rem)] flex items-center px-6">
+      <div
+        class="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-10 items-center"
       >
-        I'm passionate about writing
-        <span class="text-cyan-400 font-semibold">high-quality code</span>,
-        uplifting my teammates, and adapting fast. I’ve shipped large-scale backend
-        systems in C++, TypeScript (Node.js), Java and Python, and built immersive full-stack applications. I
-        love problems where microseconds, memory layout, and concurrency matter.
-      </p>
+        <!-- Left -->
+        <div class="text-left">
+          <div
+            class="pill inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm fade-in"
+            style="animation-delay: 0.1s; color: var(--muted)"
+          >
+            <span
+              class="w-2 h-2 rounded-full"
+              style="background: var(--accent2)"
+            ></span>
+            CS + Business @ Waterloo • Prev. Kinaxis, AutoTrader, D2L
+          </div>
 
-      <!-- Buttons -->
-      <div class="flex gap-4 mt-8 fade-in" style="animation-delay: 1s">
+          <h1
+            class="mt-6 text-5xl md:text-6xl font-semibold leading-tight fade-in"
+            style="animation-delay: 0.2s"
+          >
+            <span class="typewrap">
+              <span id="typedName"></span><span class="caret"></span>
+            </span>
+          </h1>
+
+          <p
+            class="mt-6 text-lg leading-relaxed fade-in"
+            style="animation-delay: 0.35s; color: var(--muted)"
+          >
+            I build
+            <span class="accent" style="font-weight: 600"
+              >high-leverage systems</span
+            >
+            — calm to use and serious under the hood with clean interfaces, tight
+            performance, and reliable execution.
+          </p>
+
+          <div
+            class="mt-8 flex flex-wrap gap-3 fade-in"
+            style="animation-delay: 0.45s"
+          >
+            <a href="https://github.com/prem-pxtel" target="_blank" class="btn">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+            <a
+              href="https://prem-pxtel.github.io/portfolio/docs/Prem_Patel_Resume.pdf"
+              target="_blank"
+              class="btn btnPrimary"
+            >
+              <i class="fas fa-file"></i> Resume
+            </a>
+            <a href="#projects" class="btn">
+              <i class="fas fa-arrow-down"></i> See work
+            </a>
+          </div>
+        </div>
+
+        <!-- Right -->
+        <div
+          class="flex justify-center md:justify-end fade-in"
+          style="animation-delay: 0.25s"
+        >
+          <div class="relative">
+            <div
+              class="absolute -inset-6 rounded-full blur-2xl"
+              style="
+                background: radial-gradient(
+                  circle,
+                  color-mix(in srgb, var(--accent2) 26%, transparent),
+                  transparent 60%
+                );
+              "
+            ></div>
+            <img
+              src="https://media.licdn.com/dms/image/v2/D4E03AQGzSZ5wwBnATA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1721255213084?e=2147483647&v=beta&t=ZUq5qcE60ugnlNbTrlAHoaUsCKRaEJieYfG2pgdjc1g"
+              alt="Prem Patel"
+              class="pfp w-56 h-56 md:w-72 md:h-72 rounded-full object-cover transition duration-300 hover:scale-[1.02]"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="subtleRule"></div>
+    </div>
+
+    <!-- Projects -->
+    <section class="px-6 py-20 max-w-6xl mx-auto" id="projects">
+      <div class="flex items-end justify-between gap-6 mb-10">
+        <div>
+          <h2 class="sectionTitle text-3xl font-semibold">
+            <span class="accent">//</span> Selected Work
+          </h2>
+          <p class="mt-2" style="color: var(--muted)">
+            Projects across the stack that deliver exactly what a user signs up
+            for.
+          </p>
+        </div>
         <a
           href="https://github.com/prem-pxtel"
           target="_blank"
-          class="bg-slate-800 hover:bg-slate-700 px-5 py-3 rounded-xl shadow flex items-center gap-2 transition"
+          class="hidden md:inline-flex btn"
         >
-          <i class="fab fa-github"></i> GitHub
-        </a>
-        <a
-          href="https://www.linkedin.com/in/prempatel149"
-          target="_blank"
-          class="bg-blue-600 hover:bg-blue-500 px-5 py-3 rounded-xl shadow flex items-center gap-2 transition"
-        >
-          <i class="fab fa-linkedin"></i> LinkedIn
-        </a>
-        <a
-          href="https://prem-pxtel.github.io/portfolio/docs/Prem_Patel_Resume.pdf"
-          download
-          class="bg-cyan-500 hover:bg-cyan-400 px-5 py-3 rounded-xl shadow flex items-center gap-2 transition"
-        >
-          <i class="fas fa-file"></i> Resume
+          View all <i class="fas fa-arrow-right"></i>
         </a>
       </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section class="px-6 py-20 max-w-6xl mx-auto" id="projects">
-      <h2 class="text-3xl font-bold text-center mb-12 text-cyan-400">
-        // Featured Projects
-      </h2>
-
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Instill -->
-        <a
-          href="https://github.com/prem-pxtel/offline-and-sync-journal"
-          target="_blank"
-          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:ring-2 hover:ring-cyan-400 hover:ring-offset-2 hover:ring-offset-slate-900 transition block"
+      <!-- Featured -->
+      <a
+        href="https://github.com/prem-pxtel/offline-and-sync-journal"
+        target="_blank"
+        class="glass hover-soft block rounded-3xl p-7 md:p-8 mb-8"
+      >
+        <div
+          class="flex flex-col md:flex-row md:items-start md:justify-between gap-5"
         >
-          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
-            <i class="fas fa-pen-to-square text-cyan-400"></i> Instill (Offline-First
-            Journaling App)
-          </h3>
-          <p class="text-slate-300">
-            Offline-first journaling app in React Native + TypeScript with an
-            outbox-based sync engine, idempotent operations, and conflict-safe
-            merges to prevent data loss.
-            <span class="text-slate-400">(Jan 2026)</span>
-          </p>
-        </a>
+          <div>
+            <div class="chip mb-3"><i class="fas fa-star"></i> Featured</div>
+            <h3 class="text-2xl font-semibold flex items-center gap-3">
+              <i class="fas fa-pen-to-square accent"></i>
+              Instill
+              <span style="color: var(--muted); font-weight: 500"
+                >— Offline-First Journaling</span
+              >
+            </h3>
+            <p class="mt-3 text-base leading-relaxed" style="color: var(--muted)">
+              Offline-first journaling app in React Native + TypeScript with an
+              outbox-based sync engine, idempotent operations, and conflict-safe
+              merges to prevent data loss.
+              <span style="opacity: 0.75">(Jan 2026)</span>
+            </p>
+          </div>
 
-        <!-- NBA Analytics -->
+          <div class="flex flex-wrap gap-2 md:justify-end">
+            <span class="chip"
+              ><i class="fa-brands fa-react"></i> React Native</span
+            >
+            <span class="chip"><i class="fa-brands fa-node-js"></i> Node</span>
+            <span class="chip"><i class="fas fa-database"></i> Postgres</span>
+            <span class="chip"
+              ><i class="fas fa-arrows-rotate"></i> Sync Engine</span
+            >
+          </div>
+        </div>
+      </a>
+
+      <!-- Rest -->
+      <div class="grid md:grid-cols-2 gap-6">
         <a
           href="https://github.com/prem-pxtel/NBA-Analytics-Dashboard"
           target="_blank"
-          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:ring-2 hover:ring-cyan-400 hover:ring-offset-2 hover:ring-offset-slate-900 transition block"
+          class="glass hover-soft rounded-2xl p-6 block"
         >
-          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
-            <i class="fas fa-chart-line text-cyan-400"></i> NBA Analytics Dashboard
-          </h3>
-          <p class="text-slate-300">
-            Full-stack web app with React, Flask, and PostgreSQL. Designed
-            optimized SQL, role-based auth, and visualized player stats.
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-lg font-semibold flex items-center gap-2">
+              <i class="fas fa-chart-line accent"></i> NBA Analytics Dashboard
+            </h3>
+            <span class="chip"
+              ><i class="fas fa-layer-group"></i> Full-stack</span
+            >
+          </div>
+          <p class="mt-3" style="color: var(--muted)">
+            React + Flask + PostgreSQL. Optimized SQL, role-based auth, and
+            player stat visuals.
           </p>
         </a>
 
-        <!-- Barber Review Mobile App -->
         <a
           href="https://git.uwaterloo.ca/tmanea/team-102-15"
           target="_blank"
-          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:ring-2 hover:ring-cyan-400 hover:ring-offset-2 hover:ring-offset-slate-900 transition block"
+          class="glass hover-soft rounded-2xl p-6 block"
         >
-          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
-            <i class="fas fa-mobile-alt text-cyan-400"></i> Barber Review Mobile App
-          </h3>
-          <p class="text-slate-300">
-            Android app in Kotlin + Compose UI. Integrated Google Places API,
-            Firebase authentication, and cloud data storage.
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-lg font-semibold flex items-center gap-2">
+              <i class="fas fa-mobile-alt accent"></i> Barber Review Mobile App
+            </h3>
+            <span class="chip"
+              ><i class="fas fa-mobile-screen"></i> Android</span
+            >
+          </div>
+          <p class="mt-3" style="color: var(--muted)">
+            Kotlin + Compose UI. Google Places API, Firebase auth, and cloud data
+            storage.
           </p>
         </a>
 
-        <!-- Predicting Plant Traits -->
         <a
           href="https://github.com/prem-pxtel/Predicting-Plant-Traits-CNN-Boosting"
           target="_blank"
-          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:ring-2 hover:ring-cyan-400 hover:ring-offset-2 hover:ring-offset-slate-900 transition block"
+          class="glass hover-soft rounded-2xl p-6 block"
         >
-          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
-            <i class="fas fa-seedling text-cyan-400"></i> Predicting Plant Traits
-          </h3>
-          <p class="text-slate-300">
-            ML pipeline using PyTorch (ResNet50) + XGBoost. Bayesian optimization
-            improved baseline performance by 192%.
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-lg font-semibold flex items-center gap-2">
+              <i class="fas fa-seedling accent"></i> Predicting Plant Traits
+            </h3>
+            <span class="chip"><i class="fas fa-brain"></i> ML</span>
+          </div>
+          <p class="mt-3" style="color: var(--muted)">
+            PyTorch (ResNet50) + XGBoost. Bayesian optimization improved baseline
+            performance by 192%.
           </p>
         </a>
 
-        <!-- AccChecky -->
         <a
           href="https://github.com/amanda-guo/accessibility-checker"
           target="_blank"
-          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:ring-2 hover:ring-cyan-400 hover:ring-offset-2 hover:ring-offset-slate-900 transition block"
+          class="glass hover-soft rounded-2xl p-6 block"
         >
-          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
-            <i class="fas fa-universal-access text-cyan-400"></i> AccChecky
-            (HackThe6ix Winner)
-          </h3>
-          <p class="text-slate-300">
-            Web app that analyzed website accessibility with Taipy + Wave API,
-            featuring real-time visualizations.
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-lg font-semibold flex items-center gap-2">
+              <i class="fas fa-universal-access accent"></i> AccChecky (HackThe6ix
+              Winner)
+            </h3>
+            <span class="chip"><i class="fas fa-award"></i> Hackathon</span>
+          </div>
+          <p class="mt-3" style="color: var(--muted)">
+            Accessibility analyzer with Taipy + Wave API and real-time
+            visualizations.
           </p>
         </a>
 
-        <!-- Compiler & Assembler (now same size as others) -->
         <a
           href="https://github.com/prem-pxtel/WLP4-Compiler"
           target="_blank"
-          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:ring-2 hover:ring-cyan-400 hover:ring-offset-2 hover:ring-offset-slate-900 transition block"
+          class="glass hover-soft rounded-2xl p-6 block md:col-span-2"
         >
-          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
-            <i class="fas fa-terminal text-cyan-400"></i> Compiler & Assembler
-          </h3>
-          <p class="text-slate-300">
-            Implemented tokenization, parsing, type-checking, and code generation
-            for WLP4 (C-like), plus a MIPS assembler — in C++.
+          <div class="flex items-start justify-between gap-4">
+            <h3 class="text-lg font-semibold flex items-center gap-2">
+              <i class="fas fa-terminal accent"></i> Compiler & Assembler
+            </h3>
+            <span class="chip"><i class="fas fa-code"></i> C++</span>
+          </div>
+          <p class="mt-3" style="color: var(--muted)">
+            Built a WLP4 compiler (lexer, parser, type checker, codegen) + MIPS
+            assembler.
           </p>
         </a>
       </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- Divider -->
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="subtleRule"></div>
+    </div>
+
+    <!-- Experience -->
     <section class="px-6 py-20 max-w-6xl mx-auto" id="experience">
-      <div class="grid md:grid-cols-3 gap-8 text-center">
+      <div class="mb-10">
+        <h2 class="sectionTitle text-3xl font-semibold">
+          <span class="accent">//</span> Experience
+        </h2>
+      </div>
+
+      <div class="timeline">
         <!-- Kinaxis -->
-        <div
-          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition"
-        >
-          <div class="h-16 flex items-center justify-center mb-4">
-            <img
-              src="https://www.kinaxis.com/sites/default/files/wysiwyg/Kinaxis_Logo_Single_Red.png"
-              alt="Kinaxis Logo"
-              class="max-h-full object-contain"
-            />
+        <div class="node">
+          <div class="dot"></div>
+
+          <div class="flex flex-col md:flex-row md:items-start gap-5">
+            <div
+              class="logoBox hover-soft"
+              style="border-color: rgba(255, 255, 255, 0.1)"
+            >
+              <img
+                src="https://www.kinaxis.com/sites/default/files/wysiwyg/Kinaxis_Logo_Single_Red.png"
+                alt="Kinaxis"
+              />
+            </div>
+
+            <div class="flex-1">
+              <div
+                class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2"
+              >
+                <div>
+                  <h3 class="text-xl font-semibold">Software Engineer Intern</h3>
+                  <p style="color: var(--muted)">Kinaxis • Ottawa, ON</p>
+                </div>
+                <div class="chip">
+                  <i class="far fa-calendar"></i> Jan 2025 – Apr 2026
+                </div>
+              </div>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="chip"
+                  ><i class="fas fa-network-wired"></i> Distributed Systems</span
+                >
+                <span class="chip"
+                  ><i class="fas fa-code"></i> C++ / TypeScript</span
+                >
+                <span class="chip"
+                  ><i class="fas fa-plug"></i> Node.js + Java Runtimes</span
+                >
+                <span class="chip"
+                  ><i class="fas fa-arrows-left-right"></i> WebSockets</span
+                >
+              </div>
+
+              <ul class="mt-4 space-y-2" style="color: var(--muted)">
+                <li class="relative pl-6 leading-relaxed">
+                  <span class="accent absolute left-0">•</span>
+                  Built end-to-end features across a distributed
+                  <b style="color: var(--text)">C++ server</b> and
+                  <b style="color: var(--text)">TypeScript (Node.js) + Java</b>
+                  runtimes over persistent
+                  <b style="color: var(--text)">WebSockets</b>, delivering reliable
+                  execution workflows for planning runs.
+                </li>
+
+                <li class="relative pl-6 leading-relaxed">
+                  <span class="accent absolute left-0">•</span>
+                  Shipped a <b style="color: var(--text)">VS Code extension</b> for
+                  authoring/running/debugging embedded algorithms (breakpoints +
+                  publish/run flows), cutting iteration time by
+                  <b style="color: var(--text)">40%</b>.
+                </li>
+
+                <li class="relative pl-6 leading-relaxed">
+                  <span class="accent absolute left-0">•</span>
+                  Launched <b style="color: var(--text)">Bring-Your-Own-Model</b>
+                  optimization with a solver-agnostic integration layer and an
+                  async execution pipeline to run user-defined models safely at
+                  scale.
+                </li>
+
+                <li class="relative pl-6 leading-relaxed">
+                  <span class="accent absolute left-0">•</span>
+                  Designed thread-safe CPU/memory guardrails using
+                  <b style="color: var(--text)">RAII semaphores</b> to prevent
+                  noisy-neighbor spikes; reduced lock contention by
+                  <b style="color: var(--text)">~30%</b>.
+                </li>
+
+                <li class="relative pl-6 leading-relaxed">
+                  <span class="accent absolute left-0">•</span>
+                  Standardized structured logging + metrics and integrated
+                  <b style="color: var(--text)">Datadog dashboards</b> to attribute
+                  compute usage per customer, enabling accurate consumption-based
+                  pricing.
+                </li>
+
+                <li class="relative pl-6 leading-relaxed">
+                  <span class="accent absolute left-0">•</span>
+                  Implemented <b style="color: var(--text)">multi-agent execution</b>
+                  in Java runtime containers and optimized message serialization
+                  with <b style="color: var(--text)">FlatBuffers</b> for safely
+                  larger payload support
+                  <b style="color: var(--text)">(+25%)</b>.
+                </li>
+
+                <li class="relative pl-6 leading-relaxed">
+                  <span class="accent absolute left-0">•</span>
+                  Deployed agent services on Kubernetes via
+                  <b style="color: var(--text)">Docker + Helm</b> (Azure/GCP) and
+                  presented <b style="color: var(--text)">15</b> cross-team demos
+                  in a fast-paced Kanban environment.
+                </li>
+              </ul>
+            </div>
           </div>
-          <h3 class="text-lg font-semibold">Software Engineer Intern</h3>
-          <p class="text-slate-400 text-sm">Jan 2025 – Present</p>
         </div>
 
         <!-- AutoTrader -->
-        <div
-          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition"
-        >
-          <div class="h-16 flex items-center justify-center mb-4">
-            <img
-              src="https://www.inmotionwrapslv.com/wp-content/uploads/2020/02/download-2.png"
-              alt="AutoTrader Logo"
-              class="max-h-full object-contain"
-            />
+        <div class="node">
+          <div class="dot"></div>
+
+          <div class="flex flex-col md:flex-row md:items-start gap-5">
+            <div
+              class="logoBox hover-soft"
+              style="border-color: rgba(255, 255, 255, 0.1)"
+            >
+              <img
+                src="https://www.inmotionwrapslv.com/wp-content/uploads/2020/02/download-2.png"
+                alt="AutoTrader"
+              />
+            </div>
+
+            <div class="flex-1">
+              <div
+                class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2"
+              >
+                <div>
+                  <h3 class="text-xl font-semibold">Software Engineer Intern</h3>
+                  <p style="color: var(--muted)">AutoTrader • Toronto, ON</p>
+                </div>
+                <div class="chip">
+                  <i class="far fa-calendar"></i> Jan 2024 – May 2024
+                </div>
+              </div>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="chip"><i class="fas fa-gears"></i> ETL</span>
+                <span class="chip"><i class="fas fa-file-lines"></i> Reporting</span>
+                <span class="chip"
+                  ><i class="fas fa-diagram-project"></i> Pipelines</span
+                >
+              </div>
+
+              <ul class="mt-4 space-y-2" style="color: var(--muted)">
+                <li class="relative pl-6 leading-relaxed">
+                  <span class="accent absolute left-0">•</span>
+                  Developed Python services processing OEM feeds for
+                  <b style="color: var(--text)">30+ automotive brands</b>.
+                </li>
+
+                <li class="relative pl-6 leading-relaxed">
+                  <span class="accent absolute left-0">•</span>
+                  Improved end-to-end processing time by
+                  <b style="color: var(--text)">8×</b> by restructuring
+                  transformations and batching (<b style="color: var(--text)"
+                    >Pandas + REST</b
+                  >
+                  integrations).
+                </li>
+
+                <li class="relative pl-6 leading-relaxed">
+                  <span class="accent absolute left-0">•</span>
+                  Built <b style="color: var(--text)">Azure Pipelines</b>
+                  automation to generate and deliver monthly reports for
+                  <b style="color: var(--text)">150+ dealerships</b>, integrating
+                  Redash queries and enforcing consistent schemas/validation.
+                </li>
+
+                <li class="relative pl-6 leading-relaxed">
+                  <span class="accent absolute left-0">•</span>
+                  Automated PDF/table ingestion + validation with
+                  <b style="color: var(--text)">Tabula</b>, reducing manual cleanup
+                  by <b style="color: var(--text)">~5 hours</b> per refresh cycle
+                  and improving reporting accuracy up to
+                  <b style="color: var(--text)">85%</b>.
+                </li>
+
+                <li class="relative pl-6 leading-relaxed">
+                  <span class="accent absolute left-0">•</span>
+                  Partnered with dealerships to scope purchase-experience
+                  requirements and ship feed/reporting updates, reducing
+                  back-and-forth on change requests.
+                </li>
+              </ul>
+            </div>
           </div>
-          <h3 class="text-lg font-semibold">Software Engineer Intern</h3>
-          <p class="text-slate-400 text-sm">Jan – May 2024</p>
         </div>
 
         <!-- D2L -->
-        <div
-          class="bg-slate-800 rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-[1.02] transition"
-        >
-          <div class="h-16 flex items-center justify-center mb-4">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/4/44/D2L_Logo.png"
-              alt="D2L Logo"
-              class="h-8 object-contain"
-            />
+        <div class="node" style="padding-bottom: 4px">
+          <div class="dot"></div>
+
+          <div class="flex flex-col md:flex-row md:items-start gap-5">
+            <div
+              class="logoBox hover-soft"
+              style="border-color: rgba(255, 255, 255, 0.1)"
+            >
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/4/44/D2L_Logo.png"
+                alt="D2L"
+              />
+            </div>
+
+            <div class="flex-1">
+              <div
+                class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2"
+              >
+                <div>
+                  <h3 class="text-xl font-semibold">Data Engineer Intern</h3>
+                  <p style="color: var(--muted)">D2L • Waterloo, ON</p>
+                </div>
+                <div class="chip">
+                  <i class="far fa-calendar"></i> Jan 2023 – Apr 2023
+                </div>
+              </div>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="chip"><i class="fas fa-database"></i> CRM Data</span>
+                <span class="chip"><i class="fas fa-broom"></i> Dedupe</span>
+                <span class="chip"><i class="fas fa-route"></i> Lead Routing</span>
+              </div>
+
+              <ul class="mt-4 space-y-2" style="color: var(--muted)">
+                <li class="relative pl-6 leading-relaxed">
+                  <span class="accent absolute left-0">•</span>
+                  Built repeatable data-quality workflows across
+                  <b style="color: var(--text)">15k+ records</b> (dedupe, normalize,
+                  categorize).
+                </li>
+
+                <li class="relative pl-6 leading-relaxed">
+                  <span class="accent absolute left-0">•</span>
+                  Improved lead routing and expanded the prospect universe by
+                  <b style="color: var(--text)">~30%</b>.
+                </li>
+              </ul>
+            </div>
           </div>
-          <h3 class="text-lg font-semibold">Data Engineer Intern</h3>
-          <p class="text-slate-400 text-sm">Jan – Apr 2023</p>
         </div>
+      </div>
+
+      <div class="mt-10 pill rounded-2xl px-5 py-4" style="color: var(--muted)">
+        <span class="accent" style="font-weight: 600">Focus:</span>
+        Building experiences through distributed systems and tooling - shipping
+        with measurable impact.
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-8 text-center text-slate-400 text-sm">
-      © 2025 Prem Patel — Built with ❤️ + Tailwind
+    <footer class="py-12 text-center text-sm" style="color: var(--muted)">
+      <div
+        id="backToTop"
+        class="inline-flex items-center justify-center mb-5 cursor-pointer select-none"
+        style="
+          width: 56px;
+          height: 56px;
+          border-radius: 999px;
+          opacity: 0.55;
+          transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+        "
+        aria-label="Back to top"
+        title="Back to top"
+      >
+        <i class="fas fa-chevron-up" style="font-size: 28px"></i>
+      </div>
+
+      <div style="opacity: 0.5">© 2025 Prem Patel - Built with keyboard + mouse + vibes.</div>
     </footer>
+
+    <!-- Typewriter -->
+    <script>
+      const nameText = "Prem Patel";
+      const el = document.getElementById("typedName");
+      let i = 0;
+
+      function type() {
+        if (i <= nameText.length) {
+          el.textContent = nameText.slice(0, i);
+          i++;
+          setTimeout(type, 70);
+        }
+      }
+      type();
+    </script>
+
+    <!-- Topbar Scroll Up -->
+    <script>
+      const topbar = document.getElementById("topbar");
+
+      topbar?.addEventListener("click", (e) => {
+        // Don't hijack clicks on links/buttons inside the bar
+        const clickedLink = e.target.closest("a, button");
+        if (clickedLink) return;
+
+        document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+      });
+    </script>
+
+    <!-- Chevron Scroll Up -->
+    <script>
+      const backToTop = document.getElementById("backToTop");
+
+      backToTop.addEventListener("click", () => {
+        document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+      });
+
+      backToTop.addEventListener("mouseenter", () => {
+        backToTop.style.opacity = "0.9";
+        backToTop.style.transform = "translateY(-2px)";
+        backToTop.style.background = "rgba(255,255,255,0.04)";
+      });
+
+      backToTop.addEventListener("mouseleave", () => {
+        backToTop.style.opacity = "0.55";
+        backToTop.style.transform = "translateY(0)";
+        backToTop.style.background = "transparent";
+      });
+    </script>
   </body>
 </html>
