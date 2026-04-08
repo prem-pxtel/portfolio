@@ -283,10 +283,10 @@
                 <b style="color: var(--text)">C++ server</b> and
                 <b style="color: var(--text)">TypeScript (Node.js) + Java</b>
                 agent/worker runtimes over persistent
-                <b style="color: var(--text)">WebSockets</b>, focusing on throughput,
-                isolation, and reliability under load.
+                <b style="color: var(--text)">WebSockets</b>, improving reliability,
+                latency, and throughput under load.
               </li>
-  
+
               <li class="relative pl-6 leading-relaxed">
                 <span class="accent absolute left-0">•</span>
                 Shipped a <b style="color: var(--text)">VS Code extension</b> to author,
@@ -295,47 +295,55 @@
                 reducing developer iteration time by
                 <b style="color: var(--text)">40%</b>.
               </li>
-  
+
               <li class="relative pl-6 leading-relaxed">
                 <span class="accent absolute left-0">•</span>
                 Launched <b style="color: var(--text)">Bring-Your-Own-Model</b>
-                optimization by building a
-                <b style="color: var(--text)">solver-agnostic</b> integration layer and
-                <b style="color: var(--text)">async</b> job pipeline to run user-defined
-                models at scale.
+                by building a <b style="color: var(--text)">solver-agnostic</b>
+                integration layer and <b style="color: var(--text)">asynchronous</b>
+                job pipeline to execute user-defined optimization models at scale.
               </li>
-  
+
               <li class="relative pl-6 leading-relaxed">
                 <span class="accent absolute left-0">•</span>
                 Designed thread-safe CPU/memory <b style="color: var(--text)">guardrails</b>
                 in <b style="color: var(--text)">C++</b> using
                 <b style="color: var(--text)">RAII semaphores</b> to prevent noisy-neighbor
                 resource spikes in <b style="color: var(--text)">multi-tenant</b> clusters;
-                cut lock contention by <b style="color: var(--text)">32%</b>.
+                reduced lock contention by <b style="color: var(--text)">32%</b>.
               </li>
-  
+
+              <li class="relative pl-6 leading-relaxed">
+                <span class="accent absolute left-0">•</span>
+                Implemented an <b style="color: var(--text)">IPC state handler</b> with
+                disconnection detection and controlled retry scheduling, improving
+                <b style="color: var(--text)">fault tolerance</b> and preventing cascading
+                failures across distributed workers.
+              </li>
+
               <li class="relative pl-6 leading-relaxed">
                 <span class="accent absolute left-0">•</span>
                 Standardized <b style="color: var(--text)">structured logging + metrics</b>
-                integrated with <b style="color: var(--text)">Datadog dashboards</b> to
-                attribute CPU usage per customer, enabling fair and transparent
-                <b style="color: var(--text)">consumption-based pricing</b>.
+                with <b style="color: var(--text)">Datadog dashboards</b> to attribute CPU
+                usage per customer, enabling transparent
+                <b style="color: var(--text)">consumption-based pricing</b> generating
+                <b style="color: var(--text)">$1M+</b> in annual revenue.
               </li>
-  
+
               <li class="relative pl-6 leading-relaxed">
                 <span class="accent absolute left-0">•</span>
-                Optimized response serialization with
-                <b style="color: var(--text)">FlatBuffers</b> to support
-                <b style="color: var(--text)">25%</b> larger payloads without performance
-                regressions, improving throughput consistency under load.
+                Redesigned response serialization using
+                <b style="color: var(--text)">FlatBuffers</b>, eliminating silent crashes
+                and improving throughput by
+                <b style="color: var(--text)">~25%</b> under large payloads.
               </li>
-  
+
               <li class="relative pl-6 leading-relaxed">
                 <span class="accent absolute left-0">•</span>
-                Deployed agent services on <b style="color: var(--text)">Kubernetes</b> via
-                <b style="color: var(--text)">Docker + Helm</b> (Azure/GCP) for repeatable
-                rollouts and presented <b style="color: var(--text)">17</b> cross-team demos
-                in a fast-paced <b style="color: var(--text)">Kanban</b> environment.
+                Deployed services on <b style="color: var(--text)">Kubernetes</b> via
+                <b style="color: var(--text)">Docker + Helm</b> (Azure/GCP) and presented
+                <b style="color: var(--text)">17</b> cross-team demos in a fast-paced
+                environment.
               </li>
             </ul>
           </div>
