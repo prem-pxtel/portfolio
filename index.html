@@ -254,19 +254,19 @@
         <div class="dot"></div>
   
         <div class="flex flex-col md:flex-row md:items-start gap-5">
-          <a href="https://www.tesla.com/" target="_blank" rel="noopener noreferrer"
-            class="logoLink flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-xl shrink-0"
+          <a href="https://www.tesla.com/" target="_blank" rel="noopener noreferrer" class="logo-img-med logoLink"
             style="border-color: rgba(255, 255, 255, 0.1)" aria-label="Tesla website" title="Tesla">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Tesla_T_symbol.svg/960px-Tesla_T_symbol.svg.png"
-              alt="Tesla" class="w-7 h-7 md:w-8 md:h-8 object-contain" />
+              alt="Tesla"
+              style="width: 46px; height: 46px; object-fit: contain; display: block; margin: auto;" />
           </a>
   
           <div class="flex-1">
             <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
               <div>
                 <h3 class="text-xl font-semibold">Software Engineer Intern, Distributed Systems</h3>
-                <p style="color: var(--muted)">Tesla • Ottawa, ON</p>
+                <p style="color: var(--muted)">Tesla • Palo Alto, CA</p>
               </div>
               <div class="chip">
                 <i class="far fa-calendar"></i> May 2026 – Aug 2026
@@ -300,7 +300,7 @@
 
               <li class="relative pl-6 leading-relaxed">
                 <span class="accent absolute left-0">•</span>
-                Built an <b style="color: var(--text)">ETL-based prototype</b> in under a week, incorporated user
+                Built an <b style="color: var(--text)">ETL-based prototype</b> in under a week, then incorporated user
                 feedback through iterative releases, and evolved it into a
                 <b style="color: var(--text)">production-ready architecture</b> with a
                 <b style="color: var(--text)">gRPC API</b> and
@@ -324,7 +324,7 @@
           <div class="flex-1">
             <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
               <div>
-                <h3 class="text-xl font-semibold">Software Engineer Intern</h3>
+                <h3 class="text-xl font-semibold">Software Engineer Intern, Embedded Algorithms</h3>
                 <p style="color: var(--muted)">Kinaxis • Ottawa, ON</p>
               </div>
               <div class="chip">
@@ -343,9 +343,9 @@
               <li class="relative pl-6 leading-relaxed">
                 <span class="accent absolute left-0">•</span>
                 Built end-to-end features in a distributed
-                <b style="color: var(--text)">C++ server</b> and
+                <b style="color: var(--text)">C++ server</b> with
                 <b style="color: var(--text)">TypeScript (Node.js) + Java</b>
-                agent/worker runtimes over persistent
+                agents/workers over persistent
                 <b style="color: var(--text)">WebSockets</b>, improving reliability,
                 latency, and throughput under load.
               </li>
@@ -361,10 +361,8 @@
 
               <li class="relative pl-6 leading-relaxed">
                 <span class="accent absolute left-0">•</span>
-                Launched <b style="color: var(--text)">Bring-Your-Own-Model</b>
-                by building a <b style="color: var(--text)">solver-agnostic</b>
-                integration layer and <b style="color: var(--text)">asynchronous</b>
-                job pipeline to execute user-defined optimization models at scale.
+                Launched <b style="color: var(--text)">BYO-Model</b> with a solver-agnostic,
+                <b style="color: var(--text)">async job pipeline</b> to run optimization models at scale.
               </li>
 
               <li class="relative pl-6 leading-relaxed">
@@ -373,40 +371,40 @@
                 in <b style="color: var(--text)">C++</b> using
                 <b style="color: var(--text)">RAII semaphores</b> to prevent noisy-neighbor
                 resource spikes in <b style="color: var(--text)">multi-tenant</b> clusters;
-                reduced lock contention by <b style="color: var(--text)">32%</b>.
+                cut lock contention by <b style="color: var(--text)">32%</b>.
               </li>
 
               <li class="relative pl-6 leading-relaxed">
                 <span class="accent absolute left-0">•</span>
-                Implemented an <b style="color: var(--text)">IPC state handler</b> with
-                disconnection detection and controlled retry scheduling, improving
-                <b style="color: var(--text)">fault tolerance</b> and preventing cascading
-                failures across distributed workers.
+                Implemented an <b style="color: var(--text)">IPC state handler</b> with retry scheduling and
+                <b style="color: var(--text)">disconnection detection</b>, improving
+                <b style="color: var(--text)">fault tolerance</b> and preventing cascading failure logs
+                after worker/agent disconnects.
               </li>
 
               <li class="relative pl-6 leading-relaxed">
                 <span class="accent absolute left-0">•</span>
                 Standardized <b style="color: var(--text)">structured logging + metrics</b>
-                with <b style="color: var(--text)">Datadog dashboards</b> to attribute CPU
+                integrated with <b style="color: var(--text)">Datadog dashboards</b> to attribute CPU
                 usage per customer, enabling transparent
                 <b style="color: var(--text)">consumption-based pricing</b> generating
-                <b style="color: var(--text)">$1M+</b> in annual revenue.
+                <b style="color: var(--text)">$1M+</b> annual revenue.
               </li>
 
               <li class="relative pl-6 leading-relaxed">
                 <span class="accent absolute left-0">•</span>
-                Redesigned response serialization using
-                <b style="color: var(--text)">FlatBuffers</b>, eliminating silent crashes
-                and improving throughput by
-                <b style="color: var(--text)">~25%</b> under large payloads.
+                Improved response serialization with
+                <b style="color: var(--text)">FlatBuffers</b> to support
+                <b style="color: var(--text)">25%</b> larger payloads and eliminated silent
+                <b style="color: var(--text)">Node.js</b> crashes, increasing throughput and reliability under load.
               </li>
 
               <li class="relative pl-6 leading-relaxed">
                 <span class="accent absolute left-0">•</span>
-                Deployed services on <b style="color: var(--text)">Kubernetes</b> via
-                <b style="color: var(--text)">Docker + Helm</b> (Azure/GCP) and presented
-                <b style="color: var(--text)">17</b> cross-team demos in a fast-paced
-                environment.
+                Deployed EA services on <b style="color: var(--text)">Kubernetes</b> via
+                <b style="color: var(--text)">Docker + Helm</b>
+                (<b style="color: var(--text)">Azure/GCP</b>) and presented
+                <b style="color: var(--text)">17</b> cross-team demos.
               </li>
             </ul>
           </div>
@@ -426,7 +424,7 @@
           <div class="flex-1">
             <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
               <div>
-                <h3 class="text-xl font-semibold">Software Engineer Intern</h3>
+                <h3 class="text-xl font-semibold">Software Engineer Intern, Data Automation</h3>
                 <p style="color: var(--muted)">AutoTrader • Toronto, ON</p>
               </div>
               <div class="chip">
@@ -466,13 +464,7 @@
                 <b style="color: var(--text)">5 hrs</b> per refresh cycle and improving
                 reporting accuracy by up to <b style="color: var(--text)">85%</b>.
               </li>
-  
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Partnered with dealerships to scope purchase-experience requirements and
-                ship feed + reporting updates.
-              </li>
-            </ul>
+              </ul>
           </div>
         </div>
       </div>
