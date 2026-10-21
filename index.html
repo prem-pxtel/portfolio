@@ -1,648 +1,328 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="blue">
-
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prem Patel | Portfolio</title>
-
-  <!-- Tailwind + Icons -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta name="description" content="Prem Patel — software engineer building reliable systems at scale. Work at Cloudflare, Tesla, Kinaxis, and more." />
+  <meta name="theme-color" content="#f8f9fb" />
+  <title>Prem Patel | Software Engineer</title>
+  <script>
+    // Set theme before first paint.
+    (() => {
+      let preferred = null;
+      try { preferred = localStorage.getItem('portfolio-appearance'); } catch (_) {}
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = preferred === 'dark' || preferred === 'light'
+        ? preferred : (systemDark ? 'dark' : 'light');
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]').content =
+        theme === 'dark' ? '#1c1c1e' : '#ffffff';
+    })();
+  </script>
   <link rel="stylesheet" href="./styles.css" />
 </head>
-
 <body>
-  <!-- Navbar -->
-  <nav class="fixed w-full top-0 z-50">
-    <div class="max-w-6xl mx-auto px-6 pt-4">
-      <div id="topbar" class="glass hover-soft rounded-2xl px-5 py-3 flex justify-between items-center"
-        style="cursor: pointer">
-        <a href="#home" class="font-semibold tracking-tight">
-          <span class="accent">Prem</span> Patel
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="wordmark" href="#home">Prem <span>Patel</span><span class="wordmark-dot">.</span></a>
+      <div class="nav-actions">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a class="nav-resume" href="https://prem-pxtel.github.io/portfolio/docs/Prem_Patel_resume.pdf" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <a class="nav-contact" href="https://www.linkedin.com/in/prempatel149" target="_blank" rel="noopener noreferrer">Contact ↗</a>
+        <button class="appearance-toggle" id="appearanceToggle" type="button" aria-label="Switch appearance" title="Switch appearance">
+          <svg class="icon-moon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.9 13.2A9 9 0 0 1 10.8 3.1 9 9 0 1 0 20.9 13.2Z"/></svg>
+          <svg class="icon-sun" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <div class="hero-content">
+        <p class="intro-label"><span class="status-dot" aria-hidden="true"></span> SWE @ Cloudflare · CS + Business @ Waterloo</p>
+        <h1><span id="typedName">Prem Patel</span><span class="caret" aria-hidden="true"></span></h1>
+        <p class="hero-tagline">I build systems that make complex things work <span class="accent">simply, reliably, and at scale.</span></p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary" href="https://github.com/prem-pxtel" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a class="button button-secondary" href="https://prem-pxtel.github.io/portfolio/docs/Prem_Patel_resume.pdf" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        </div>
+      </div>
+      <div class="portrait-wrap">
+        <div class="portrait-frame">
+          <img class="portrait" src="https://media.licdn.com/dms/image/v2/D5603AQFmUMLaMEVJBg/profile-displayphoto-crop_800_800/B56aBff.DUGcAI-/0/1788308613648?e=1792627200&amp;v=beta&amp;t=zcIVJ1BuDLQxRn_KOfoClxmpikA__oVQTzCpMn-bbOM" alt="Prem Patel" onerror="this.hidden=true" />
+          <span class="portrait-fallback" aria-hidden="true">PP</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">01 / WHAT I'VE BUILT</span>
+            <h2>Selected work<span class="accent">.</span></h2>
+            <p>Projects exploring systems, developer experience, and product engineering.</p>
+          </div>
+          <a class="text-link" href="https://github.com/prem-pxtel" target="_blank" rel="noopener noreferrer">All projects ↗</a>
+        </div>
+
+        <a class="featured-project" href="https://github.com/prem-pxtel/financial-transaction-ledger" target="_blank" rel="noopener noreferrer">
+          <div>
+            <span class="eyebrow">FEATURED PROJECT · JAN 2026</span>
+            <h3>Financial Transaction System <span class="featured-subtitle">/ Ledger-First Backend</span></h3>
+            <p>Immutable double-entry ledger with derived balances, transactional idempotency keys, and counterparties enforcing financial invariants. Designed for auditability and replay-safe execution.</p>
+            <span class="inline-link">View project ↗</span>
+          </div>
+          <div class="featured-tech" aria-label="Technologies">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Fastify</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
         </a>
 
-        <div class="hidden md:flex items-center gap-6 text-sm" style="color: var(--muted)">
-          <a href="#projects" class="hover:opacity-100 opacity-80 transition">Projects</a>
-          <a href="#experience" class="hover:opacity-100 opacity-80 transition">Experience</a>
-          <a href="https://prem-pxtel.github.io/portfolio/docs/Prem_Patel_resume.pdf" target="_blank"
-            class="hover:opacity-100 opacity-80 transition">Resume</a>
-          <a href="https://www.linkedin.com/in/prempatel149" target="_blank" class="btn btnPrimary">
-            <i class="fab fa-linkedin"></i> Contact
-          </a>
+        <div class="project-grid">
+        <a class="project-card" href="https://github.com/prem-pxtel/NBA-Analytics-Dashboard" target="_blank" rel="noopener noreferrer">
+          <div class="card-top"><span class="eyebrow">Full-stack</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+          <h3>NBA Analytics Dashboard</h3>
+          <p>React, FastAPI, and PostgreSQL dashboard with optimized SQL, role-based access control, and player statistics.</p>
+        </a>
+        <a class="project-card" href="https://github.com/prem-pxtel/offline-and-sync-journal" target="_blank" rel="noopener noreferrer">
+          <div class="card-top"><span class="eyebrow">Offline-first</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+          <h3>Instill</h3>
+          <p>React Native and TypeScript journaling app with outbox-based sync, idempotent operations, and conflict-safe merges.</p>
+        </a>
+        <a class="project-card" href="https://github.com/amanda-guo/accessibility-checker" target="_blank" rel="noopener noreferrer">
+          <div class="card-top"><span class="eyebrow">Hackathon winner</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+          <h3>AccChecky</h3>
+          <p>Accessibility analyzer using Taipy and WAVE API, with real-time visualizations. Winner at HackThe6ix.</p>
+        </a>
+        <a class="project-card" href="https://git.uwaterloo.ca/tmanea/team-102-15" target="_blank" rel="noopener noreferrer">
+          <div class="card-top"><span class="eyebrow">Android</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+          <h3>Barber Review Mobile App</h3>
+          <p>Kotlin and Jetpack Compose app integrating Google Places API, Firebase authentication, and cloud storage.</p>
+        </a>
+        <a class="project-card" href="https://github.com/prem-pxtel/WLP4-Compiler" target="_blank" rel="noopener noreferrer">
+          <div class="card-top"><span class="eyebrow">C++</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+          <h3>Compiler &amp; Assembler</h3>
+          <p>WLP4 compiler with lexer, parser, type checker, and MIPS code generation, plus an assembler.</p>
+        </a>
+        <a class="project-card" href="https://github.com/prem-pxtel/Predicting-Plant-Traits-CNN-Boosting" target="_blank" rel="noopener noreferrer">
+          <div class="card-top"><span class="eyebrow">Machine learning</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+          <h3>Predicting Plant Traits</h3>
+          <p>PyTorch ResNet50 and XGBoost pipeline; Bayesian optimization improved baseline performance by 192%.</p>
+        </a>
         </div>
       </div>
-    </div>
-  </nav>
+    </section>
 
-  <div class="h-24"></div>
-
-  <!-- Hero (Blue) -->
-  <section id="home" class="theme-blue min-h-[calc(100vh-8rem)] flex items-center px-6">
-    <div class="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-10 items-center">
-      <!-- Left -->
-      <div class="text-left">
-        <div class="pill inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm fade-in"
-          style="animation-delay: 0.1s; color: var(--muted)">
-          <span class="w-2 h-2 rounded-full" style="background: var(--accent2)"></span>
-          CS + Business @ Waterloo • Ex-Tesla
-        </div>
-
-        <h1 class="mt-6 text-5xl md:text-6xl font-semibold leading-tight fade-in" style="animation-delay: 0.2s">
-          <span class="typewrap">
-            <span id="typedName"></span><span class="caret"></span>
-          </span>
-        </h1>
-
-        <p class="mt-6 text-lg leading-relaxed fade-in" style="animation-delay: 0.35s; color: var(--muted)">
-          I build
-          <span class="accent" style="font-weight: 600">high-leverage systems</span> -
-          thoughtfully engineered with clean interfaces, tight
-          performance, and reliable execution.
-        </p>
-
-        <div class="mt-8 flex flex-wrap gap-3 fade-in" style="animation-delay: 0.45s">
-          <a href="https://github.com/prem-pxtel" target="_blank" class="btn">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="https://prem-pxtel.github.io/portfolio/docs/Prem_Patel_resume.pdf" target="_blank"
-            class="btn btnPrimary">
-            <i class="fas fa-file"></i> Resume
-          </a>
-          <a href="#projects" class="btn">
-            <i class="fas fa-arrow-down"></i> See work
-          </a>
-        </div>
-      </div>
-
-      <!-- Right -->
-      <div class="flex justify-center md:justify-end fade-in" style="animation-delay: 0.25s">
-        <div class="relative">
-          <div class="absolute -inset-6 rounded-full blur-2xl" style="
-                background: radial-gradient(
-                  circle,
-                  color-mix(in srgb, var(--accent2) 26%, transparent),
-                  transparent 0%
-                );
-              "></div>
-          <img
-            src="https://media.licdn.com/dms/image/v2/D5603AQFmUMLaMEVJBg/profile-displayphoto-crop_800_800/B56aBff.DUGcAI-/0/1788308613648?e=1792627200&v=beta&t=zcIVJ1BuDLQxRn_KOfoClxmpikA__oVQTzCpMn-bbOM"
-            alt="Prem Patel"
-            class="pfp w-56 h-56 md:w-72 md:h-72 rounded-full object-cover transition duration-300 hover:scale-[1.02]"
-            style="filter: none !important; mix-blend-mode: normal !important;" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Divider (Blue) -->
-  <div class="max-w-6xl mx-auto px-6 theme-blue">
-    <div class="subtleRule"></div>
-  </div>
-
-  <!-- Projects (Blue) -->
-  <section class="theme-blue px-6 py-20 max-w-6xl mx-auto" id="projects">
-    <div class="flex items-end justify-between gap-6 mb-10">
-      <div>
-        <h2 class="sectionTitle text-3xl font-semibold">
-          <span class="accent">//</span> Selected Work
-        </h2>
-        <p class="mt-2" style="color: var(--muted)">
-          Projects across multiple tech stacks, built to solve real problems.
-        </p>
-      </div>
-      <a href="https://github.com/prem-pxtel" target="_blank" class="hidden md:inline-flex btn">
-        View all <i class="fas fa-arrow-right"></i>
-      </a>
-    </div>
-
-    <!-- Featured -->
-    <a href="https://github.com/prem-pxtel/financial-transaction-ledger" target="_blank"
-      class="glass hover-soft block rounded-3xl p-7 md:p-8 mb-8">
-      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-5">
-        <div>
-          <div class="chip mb-3"><i class="fas fa-star"></i> Featured</div>
-          <h3 class="text-2xl font-semibold flex items-center gap-3">
-            <i class="fas fa-receipt accent"></i>
-            Financial Transaction System
-            <span style="color: var(--muted); font-weight: 500">— Ledger-First Backend</span>
-          </h3>
-          <p class="mt-3 text-base leading-relaxed" style="color: var(--muted)">
-            Immutable double-entry ledger in <b style="color: var(--text)">Node.js/TypeScript + Fastify + PostgreSQL</b>
-            where balances are derived (not stored), enforcing financial invariants with auditability and failure safety.
-            <span style="opacity: 0.75">(Jan 2026)</span>
-          </p>
-        </div>
-
-        <div class="flex flex-wrap gap-2 md:justify-end">
-          <span class="chip"><i class="fa-brands fa-node-js"></i> Node</span>
-          <span class="chip"><i class="fas fa-code"></i> TypeScript</span>
-          <span class="chip"><i class="fas fa-bolt"></i> Fastify</span>
-          <span class="chip"><i class="fas fa-database"></i> Postgres</span>
-          <span class="chip"><i class="fas fa-book"></i> Double-entry Ledger</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Rest -->
-    <div class="grid md:grid-cols-2 gap-6">
-      <a href="https://github.com/prem-pxtel/NBA-Analytics-Dashboard" target="_blank"
-        class="glass hover-soft rounded-2xl p-6 block">
-        <div class="flex items-start justify-between gap-4">
-          <h3 class="text-lg font-semibold flex items-center gap-2">
-            <i class="fas fa-chart-line accent"></i> NBA Analytics Dashboard
-          </h3>
-          <span class="chip"><i class="fas fa-layer-group"></i> Full-stack</span>
-        </div>
-        <p class="mt-3" style="color: var(--muted)">
-          React + Flask + PostgreSQL. Optimized SQL, role-based auth, and
-          player stat visuals.
-        </p>
-      </a>
-
-      <a href="https://github.com/prem-pxtel/offline-and-sync-journal" target="_blank"
-        class="glass hover-soft rounded-2xl p-6 block">
-        <div class="flex items-start justify-between gap-4">
-          <h3 class="text-lg font-semibold flex items-center gap-2">
-            <i class="fas fa-pen-to-square accent"></i> Instill
-          </h3>
-          <span class="chip"><i class="fas fa-arrows-rotate"></i> Offline-first</span>
-        </div>
-        <p class="mt-3" style="color: var(--muted)">
-          React Native + TypeScript journaling app with an outbox-based sync engine, idempotent ops, and conflict-safe merges.
-        </p>
-      </a>
-
-      <a href="https://github.com/amanda-guo/accessibility-checker" target="_blank"
-        class="glass hover-soft rounded-2xl p-6 block">
-        <div class="flex items-start justify-between gap-4">
-          <h3 class="text-lg font-semibold flex items-center gap-2">
-            <i class="fas fa-universal-access accent"></i> AccChecky (HackThe6ix
-            Winner)
-          </h3>
-          <span class="chip"><i class="fas fa-award"></i> Hackathon</span>
-        </div>
-        <p class="mt-3" style="color: var(--muted)">
-          Accessibility analyzer with Taipy + Wave API and real-time
-          visualizations.
-        </p>
-      </a>
-
-      <a href="https://git.uwaterloo.ca/tmanea/team-102-15" target="_blank"
-        class="glass hover-soft rounded-2xl p-6 block">
-        <div class="flex items-start justify-between gap-4">
-          <h3 class="text-lg font-semibold flex items-center gap-2">
-            <i class="fas fa-mobile-alt accent"></i> Barber Review Mobile App
-          </h3>
-          <span class="chip"><i class="fas fa-mobile-screen"></i> Android</span>
-        </div>
-        <p class="mt-3" style="color: var(--muted)">
-          Kotlin + Compose UI. Google Places API, Firebase auth, and cloud data
-          storage.
-        </p>
-      </a>
-
-      <a href="https://github.com/prem-pxtel/WLP4-Compiler" target="_blank"
-        class="glass hover-soft rounded-2xl p-6 block">
-        <div class="flex items-start justify-between gap-4">
-          <h3 class="text-lg font-semibold flex items-center gap-2">
-            <i class="fas fa-terminal accent"></i> Compiler & Assembler
-          </h3>
-          <span class="chip"><i class="fas fa-code"></i> C++</span>
-        </div>
-        <p class="mt-3" style="color: var(--muted)">
-          Built a WLP4 compiler (lexer, parser, type checker, codegen) + MIPS
-          assembler.
-        </p>
-      </a>
-
-      <a href="https://github.com/prem-pxtel/Predicting-Plant-Traits-CNN-Boosting" target="_blank"
-        class="glass hover-soft rounded-2xl p-6 block">
-        <div class="flex items-start justify-between gap-4">
-          <h3 class="text-lg font-semibold flex items-center gap-2">
-            <i class="fas fa-seedling accent"></i> Predicting Plant Traits
-          </h3>
-          <span class="chip"><i class="fas fa-brain"></i> ML</span>
-        </div>
-        <p class="mt-3" style="color: var(--muted)">
-          PyTorch (ResNet50) + XGBoost. Bayesian optimization improved baseline
-          performance by 192%.
-        </p>
-      </a>
-    </div>
-  </section>
-
-  <!-- Divider (Warm) -->
-  <div class="max-w-6xl mx-auto px-6 theme-warm">
-    <div class="subtleRule"></div>
-  </div>
-
-  <!-- Experience (Warm) -->
-  <section class="theme-warm section-warm-bg px-6 py-20 max-w-6xl mx-auto" id="experience">
-    <div class="mb-10">
-      <h2 class="sectionTitle text-3xl font-semibold">
-        <span class="accent">//</span> Experience
-      </h2>
-      <p class="mt-2" style="color: var(--muted)">
-        Internships building and shipping production systems at scale.
-      </p>
-    </div>
-
-    <div class="timeline">
-
-      <!-- Cloudflare -->
-      <div class="node">
-        <div class="dot"></div>
-
-        <div class="flex flex-col md:flex-row md:items-start gap-5">
-          <a href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer"
-            class="logo-img-med logoLink"
-            style="border-color: rgba(255, 255, 255, 0.1)"
-            aria-label="Cloudflare website" title="Cloudflare">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Cloudflare_Logo.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original"
-              alt="Cloudflare"
-              style="width: 120px; height: 80px; object-fit: contain; display: block; margin: auto;" />
-          </a>
-
-          <div class="flex-1">
-            <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
-              <div>
-                <h3 class="text-xl font-semibold">Software Engineer Intern, Distributed Systems</h3>
-                <p style="color: var(--muted)">Cloudflare • Austin, TX</p>
-              </div>
-              <div class="chip">
-                <i class="far fa-calendar"></i> Sep 2026 – Dec 2026
-              </div>
-            </div>
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">02 / WHERE I'VE WORKED</span>
+            <h2>Experience<span class="accent">.</span></h2>
+            <p>Engineering production systems across infrastructure, energy, and enterprise software.</p>
           </div>
         </div>
-      </div>
-
-      <!-- Tesla -->
-      <div class="node">
-        <div class="dot"></div>
-
-        <div class="flex flex-col md:flex-row md:items-start gap-5">
-          <a href="https://www.tesla.com/" target="_blank" rel="noopener noreferrer"
-            class="logo-img-med logoLink"
-            style="border-color: rgba(255, 255, 255, 0.1)"
-            aria-label="Tesla website" title="Tesla">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original"
-              alt="Tesla"
-              style="width: 120px; height: 100px; object-fit: contain; display: block; margin: auto;" />
+        <div class="timeline">
+      <article class="experience-entry">
+        <span class="timeline-dot" aria-hidden="true"></span>
+        <div class="experience-layout">
+          <a class="company-logo" href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Cloudflare website">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Cloudflare_Logo.png" alt="Cloudflare logo" loading="lazy" onerror="this.hidden=true" />
           </a>
-
-          <div class="flex-1">
-            <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
+          <div class="experience-info">
+            <div class="experience-heading">
               <div>
-                <h3 class="text-xl font-semibold">Software Engineer Intern, Distributed Systems</h3>
-                <p style="color: var(--muted)">Tesla • Palo Alto, CA</p>
+                <h3>Software Engineer Intern, Workers Deploy &amp; Config</h3>
+                <p class="company-meta"><strong>Cloudflare</strong> · Austin, TX</p>
               </div>
-              <div class="chip">
-                <i class="far fa-calendar"></i> May 2026 – Aug 2026
-              </div>
+              <time class="date-label">Sep 2026 – Dec 2026</time>
             </div>
-
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="chip"><i class="fas fa-network-wired"></i> Distributed Systems</span>
-              <span class="chip"><i class="fas fa-code"></i> Scala + Akka</span>
-              <span class="chip"><i class="fas fa-cubes"></i> Kubernetes + Argo CD</span>
-              <span class="chip"><i class="fas fa-database"></i> gRPC + PostgreSQL</span>
+            <div class="tag-row">
+                <span class="tag">Go</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Workers</span>
+                <span class="tag">IAM</span>
             </div>
-
-            <ul class="mt-4 space-y-2" style="color: var(--muted)">
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Built a <b style="color: var(--text)">scalable analytics backend</b> for
-                Powerwall residential batteries enrolled in
-                <a href="https://www.tesla.com/virtual-power-plant" target="_blank"
-                  rel="noopener noreferrer" class="accent" style="font-weight: 700">Virtual Power Plant</a>
-                programs <b style="color: var(--text)">(Rust, Scala)</b>, reducing response time
-                for VPP partner escalations by <b style="color: var(--text)">90%</b>.
-              </li>
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Iterated on an <b style="color: var(--text)">ETL prototype</b> with user feedback,
-                then <b style="color: var(--text)">re-architected</b> and built a
-                <b style="color: var(--text)">production system</b> with a
-                <b style="color: var(--text)">gRPC API</b>, indexed
-                <b style="color: var(--text)">PostgreSQL</b> schema,
-                <b style="color: var(--text)">Spark</b>-backed data-writing layer,
-                and client auth/access controls.
-              </li>
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Built distributed <b style="color: var(--text)">Scala services</b> to aggregate
-                and process performance data from
-                <b style="color: var(--text)">millions of Powerwall IoT devices</b>, deploying through
-                <b style="color: var(--text)">Argo CD</b> and
-                <b style="color: var(--text)">Kubernetes</b>.
-              </li>
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Completed the team's object-storage migration and deployed it to production on my
-                <b style="color: var(--text)">first day</b>.
-              </li>
-
+            <ul class="experience-bullets">
+                <li>Engineered a <strong>distributed latency-probing service</strong> in <strong>TypeScript</strong> on Workers, coordinating <strong>HTTP/TCP</strong> measurements across global edge locations to optimize workload placement and replace legacy edge infrastructure.</li>
+                <li>Developed namespace-scoped <strong>role-based access control</strong> in <strong>Go</strong> for Cloudflare Workers for Platforms, extending APIs and collaborating with IAM engineers to design hierarchical authorization for secure enterprise deployments.</li>
             </ul>
           </div>
         </div>
-      </div>
-
-      <!-- Kinaxis -->
-      <div class="node">
-        <div class="dot"></div>
-
-        <div class="flex flex-col md:flex-row md:items-start gap-5">
-          <a href="https://www.kinaxis.com/" target="_blank" rel="noopener noreferrer"
-            class="logo-img-med logoLink"
-            style="border-color: rgba(255, 255, 255, 0.1)"
-            aria-label="Kinaxis website" title="Kinaxis">
-            <img src="https://www.kinaxis.com/sites/default/files/wysiwyg/Kinaxis_Logo_Single_Red.png"
-              alt="Kinaxis" />
+      </article>
+      <article class="experience-entry">
+        <span class="timeline-dot" aria-hidden="true"></span>
+        <div class="experience-layout">
+          <a class="company-logo company-logo--tesla" href="https://www.tesla.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Tesla website">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png" alt="Tesla logo" loading="lazy" onerror="this.hidden=true" />
           </a>
-
-          <div class="flex-1">
-            <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
+          <div class="experience-info">
+            <div class="experience-heading">
               <div>
-                <h3 class="text-xl font-semibold">Software Engineer Intern, Embedded Algorithms</h3>
-                <p style="color: var(--muted)">Kinaxis • Ottawa, ON</p>
+                <h3>Software Engineer Intern, Distributed Systems</h3>
+                <p class="company-meta"><strong>Tesla</strong> · Palo Alto, CA</p>
               </div>
-              <div class="chip">
-                <i class="far fa-calendar"></i> Jan 2025 – Apr 2026
-              </div>
+              <time class="date-label">May 2026 – Aug 2026</time>
             </div>
-
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="chip"><i class="fas fa-network-wired"></i> Distributed Systems</span>
-              <span class="chip"><i class="fas fa-code"></i> C++ / TypeScript</span>
-              <span class="chip"><i class="fas fa-plug"></i> Node.js + Java Runtimes</span>
-              <span class="chip"><i class="fas fa-arrows-left-right"></i> WebSockets</span>
+            <div class="tag-row">
+                <span class="tag">Scala</span>
+                <span class="tag">Rust</span>
+                <span class="tag">gRPC</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">Kubernetes</span>
             </div>
-
-            <ul class="mt-4 space-y-2" style="color: var(--muted)">
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Built end-to-end features in a distributed
-                <b style="color: var(--text)">C++ server</b> with
-                <b style="color: var(--text)">TypeScript (Node.js) + Java</b>
-                agents/workers over persistent
-                <b style="color: var(--text)">WebSockets</b>, improving reliability,
-                latency, and throughput under load.
-              </li>
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Shipped <b style="color: var(--text)">BYO-Model</b> with a solver-agnostic,
-                <b style="color: var(--text)">async job pipeline</b> to run optimization models at scale.
-              </li>
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Designed thread-safe CPU/memory <b style="color: var(--text)">guardrails</b> in
-                <b style="color: var(--text)">C++</b> using
-                <b style="color: var(--text)">RAII semaphores</b> to prevent noisy-neighbor
-                resource spikes in <b style="color: var(--text)">multi-tenant</b> clusters;
-                cut lock contention by <b style="color: var(--text)">32%</b>.
-              </li>
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Implemented an <b style="color: var(--text)">IPC state handler</b> with retry
-                scheduling and <b style="color: var(--text)">disconnection detection</b>,
-                improving <b style="color: var(--text)">fault tolerance</b> and preventing
-                cascading failure logs after worker/agent disconnects.
-              </li>
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Improved response serialization with <b style="color: var(--text)">FlatBuffers</b>
-                to support <b style="color: var(--text)">25%</b> larger payloads and eliminated
-                silent <b style="color: var(--text)">Node.js</b> crashes, increasing throughput
-                and reliability under load.
-              </li>
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Developed a <b style="color: var(--text)">VS Code extension</b> to author,
-                publish, and run/debug user-defined
-                <b style="color: var(--text)">embedded algorithms</b> with breakpoints,
-                reducing developer iteration time by
-                <b style="color: var(--text)">40%</b>.
-              </li>
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Standardized <b style="color: var(--text)">structured logging + metrics</b>
-                integrated with <b style="color: var(--text)">Datadog dashboards</b> to attribute
-                CPU usage per customer, enabling transparent
-                <b style="color: var(--text)">consumption-based pricing</b> generating
-                <b style="color: var(--text)">$1M+</b> annual revenue.
-              </li>
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Deployed EA services on <b style="color: var(--text)">Kubernetes</b> via
-                <b style="color: var(--text)">Docker + Helm</b>
-                (<b style="color: var(--text)">Azure/GCP</b>) and presented
-                <b style="color: var(--text)">17</b> cross-team demos.
-              </li>
-
+            <ul class="experience-bullets">
+                <li>Built a <strong>scalable analytics backend</strong> for Powerwall residential batteries enrolled in <a href="https://www.tesla.com/virtual-power-plant" target="_blank" rel="noopener noreferrer">Virtual Power Plant</a> programs (<strong>Scala, Rust</strong>), reducing response time for VPP partner escalations by <strong>90%</strong>.</li>
+                <li>Iterated on an <strong>ETL prototype</strong> with user feedback, then re-architected and built a <strong>production system</strong> with a <strong>gRPC API</strong>, indexed <strong>PostgreSQL</strong> schema, <strong>Spark</strong>-backed data-writing layer, and client authentication/access controls.</li>
+                <li>Developed distributed <strong>Scala services</strong> to aggregate and process performance data from <strong>millions of Powerwall IoT devices</strong>, deploying through <strong>Argo CD</strong> and <strong>Kubernetes</strong>; also shipped object-storage migration changes to production on my <strong>first day</strong>.</li>
             </ul>
           </div>
         </div>
-      </div>
-
-      <!-- AutoTrader -->
-      <div class="node">
-        <div class="dot"></div>
-
-        <div class="flex flex-col md:flex-row md:items-start gap-5">
-          <a href="https://www.autotrader.ca/" target="_blank" rel="noopener noreferrer"
-            class="logo-img-med logoLink"
-            style="border-color: rgba(255, 255, 255, 0.1)"
-            aria-label="AutoTrader website" title="AutoTrader">
-            <img src="./archive/autotrader%20logo.png"
-              alt="AutoTrader" />
+      </article>
+      <article class="experience-entry">
+        <span class="timeline-dot" aria-hidden="true"></span>
+        <div class="experience-layout">
+          <a class="company-logo company-logo--large company-logo--kinaxis" href="https://www.kinaxis.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Kinaxis website">
+            <img src="https://www.kinaxis.com/sites/default/files/wysiwyg/Kinaxis_Logo_Single_Red.png" alt="Kinaxis logo" loading="lazy" onerror="this.hidden=true" />
           </a>
-
-          <div class="flex-1">
-            <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
+          <div class="experience-info">
+            <div class="experience-heading">
               <div>
-                <h3 class="text-xl font-semibold">Software Engineer Intern, Data Automation</h3>
-                <p style="color: var(--muted)">AutoTrader • Toronto, ON</p>
+                <h3>Software Engineer Intern, Embedded Algorithms</h3>
+                <p class="company-meta"><strong>Kinaxis</strong> · Ottawa, ON</p>
               </div>
-              <div class="chip">
-                <i class="far fa-calendar"></i> Jan 2024 – May 2024
-              </div>
+              <time class="date-label">Jan 2025 – Apr 2026</time>
             </div>
-
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="chip"><i class="fas fa-gears"></i> ETL</span>
-              <span class="chip"><i class="fas fa-file-lines"></i> Reporting</span>
-              <span class="chip"><i class="fas fa-diagram-project"></i> Pipelines</span>
+            <div class="tag-row">
+                <span class="tag">C++</span>
+                <span class="tag">TypeScript / Node.js</span>
+                <span class="tag">Java</span>
+                <span class="tag">WebSockets</span>
+                <span class="tag">Kubernetes</span>
             </div>
-
-            <ul class="mt-4 space-y-2" style="color: var(--muted)">
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Developed <b style="color: var(--text)">Python</b> ingestion services processing OEM
-                feeds for <b style="color: var(--text)">30+ automotive brands</b>; reduced
-                end-to-end processing time by <b style="color: var(--text)">8x</b> by restructuring
-                transformations and batching (<b style="color: var(--text)">Pandas + REST API</b>
-                integrations).
-              </li>
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Built <b style="color: var(--text)">Azure Pipelines</b> automation to generate
-                and deliver monthly reports for
-                <b style="color: var(--text)">150+ dealerships</b>, integrating
-                <b style="color: var(--text)">Redash</b> queries and enforcing consistent
-                schemas/validation.
-              </li>
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Automated PDF/table ingestion and validation with
-                <b style="color: var(--text)">Tabula</b>, reducing manual cleanup by
-                <b style="color: var(--text)">5 hrs</b> per refresh cycle and improving
-                reporting accuracy by up to <b style="color: var(--text)">85%</b>.
-              </li>
-
+            <ul class="experience-bullets">
+                <li>Built end-to-end features in a <strong>distributed C++ server</strong> with <strong>Java</strong> and <strong>TypeScript (Node.js)</strong> agents/workers over persistent <strong>WebSockets</strong>, improving reliability, latency, and throughput under load.</li>
+                <li>Shipped <strong>Bring Your Own Model</strong> with a solver-agnostic, <strong>asynchronous job pipeline</strong> to run optimization models at scale.</li>
+                <li>Designed thread-safe CPU/memory <strong>guardrails in C++</strong> using <strong>RAII semaphores</strong> to prevent resource spikes in multi-tenant clusters.</li>
+                <li>Implemented an <strong>IPC state handler</strong> with retry scheduling and disconnection detection, improving fault tolerance and preventing cascading failure logs after worker/agent disconnects.</li>
+                <li>Improved response serialization with <strong>FlatBuffers</strong> to support <strong>25% larger payloads</strong> and eliminated silent Node.js crashes, increasing throughput and reliability under load.</li>
+                <li>Standardized <strong>structured logging and metrics</strong> with <strong>Datadog</strong> dashboards to attribute CPU usage per customer, enabling consumption-based pricing supporting <strong>$1M+ annual revenue</strong>.</li>
+                <li>Deployed Embedded Algorithms services on <strong>Kubernetes</strong> via <strong>Docker + Helm (GCP)</strong> and presented <strong>17</strong> cross-team demos.</li>
             </ul>
           </div>
         </div>
-      </div>
-
-      <!-- D2L -->
-      <div class="node" style="padding-bottom: 4px">
-        <div class="dot"></div>
-
-        <div class="flex flex-col md:flex-row md:items-start gap-5">
-          <a href="https://www.d2l.com/" target="_blank" rel="noopener noreferrer"
-            class="logoBox logoLink"
-            aria-label="D2L website" title="D2L">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/D2L_Logo.png"
-              alt="D2L" />
+      </article>
+      <article class="experience-entry">
+        <span class="timeline-dot" aria-hidden="true"></span>
+        <div class="experience-layout">
+          <a class="company-logo company-logo--large" href="https://www.autotrader.ca/" target="_blank" rel="noopener noreferrer" aria-label="Visit AutoTrader website">
+            <img src="./archive/autotrader%20logo.png" alt="AutoTrader logo" loading="lazy" onerror="this.hidden=true" />
           </a>
-
-          <div class="flex-1">
-            <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
+          <div class="experience-info">
+            <div class="experience-heading">
               <div>
-                <h3 class="text-xl font-semibold">Data Engineer Intern</h3>
-                <p style="color: var(--muted)">D2L • Waterloo, ON</p>
+                <h3>Software Engineer Intern, Data Automation</h3>
+                <p class="company-meta"><strong>AutoTrader</strong> · Toronto, ON</p>
               </div>
-              <div class="chip">
-                <i class="far fa-calendar"></i> Jan 2023 – Apr 2023
-              </div>
+              <time class="date-label">Jan 2024 – May 2024</time>
             </div>
-
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="chip"><i class="fas fa-database"></i> CRM Data</span>
-              <span class="chip"><i class="fas fa-broom"></i> Data Quality</span>
-              <span class="chip"><i class="fas fa-route"></i> Lead Routing</span>
+            <div class="tag-row">
+                <span class="tag">Python</span>
+                <span class="tag">Pandas</span>
+                <span class="tag">REST APIs</span>
+                <span class="tag">Azure Pipelines</span>
             </div>
-
-            <ul class="mt-4 space-y-2" style="color: var(--muted)">
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Led a CRM <b style="color: var(--text)">single-source-of-truth</b> initiative by
-                designing repeatable <b style="color: var(--text)">data-quality</b> workflows
-                (dedupe, normalize, categorize) across <b style="color: var(--text)">15k+</b> records.
-              </li>
-
-              <li class="relative pl-6 leading-relaxed">
-                <span class="accent absolute left-0">•</span>
-                Improved lead routing and expanded the target prospect universe by
-                <b style="color: var(--text)">38%</b>.
-              </li>
-
+            <ul class="experience-bullets">
+                <li>Developed <strong>Python ingestion services</strong> processing OEM feeds for <strong>30+ automotive brands</strong>; reduced end-to-end processing time by <strong>8×</strong> through restructured transformations and batching with Pandas and REST API integrations.</li>
+                <li>Built <strong>Azure Pipelines</strong> automation to generate and deliver monthly reports for <strong>150+ dealerships</strong>, integrating Redash queries and consistent schema validation.</li>
             </ul>
           </div>
         </div>
+      </article>
+      <article class="experience-entry">
+        <span class="timeline-dot" aria-hidden="true"></span>
+        <div class="experience-layout">
+          <a class="company-logo" href="https://www.d2l.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit D2L website">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/D2L_Logo.png" alt="D2L logo" loading="lazy" onerror="this.hidden=true" />
+          </a>
+          <div class="experience-info">
+            <div class="experience-heading">
+              <div>
+                <h3>Data Enrichment Coordinator</h3>
+                <p class="company-meta"><strong>D2L</strong> · Waterloo, ON</p>
+              </div>
+              <time class="date-label">Jan 2023 – Apr 2023</time>
+            </div>
+            <div class="tag-row">
+                <span class="tag">CRM Data</span>
+                <span class="tag">Data Quality</span>
+                <span class="tag">Automation</span>
+            </div>
+            <ul class="experience-bullets">
+                <li>Led a CRM single-source-of-truth initiative with repeatable data-quality workflows for deduplication, normalization, and categorization across <strong>15k+ records</strong>.</li>
+                <li>Improved lead routing and expanded the target prospect universe by <strong>38%</strong>.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+        </div>
+        <p class="focus-line"><span>Focus</span> High-performance distributed systems and backend infrastructure, with an emphasis on scalability, reliability, and seamless customer experiences.</p>
       </div>
-    </div>
+    </section>
+  </main>
 
-    <div class="mt-10 pill rounded-2xl px-5 py-4" style="color: var(--muted)">
-      <span class="accent" style="font-weight: 600">Focus:</span>
-      High-performance distributed systems and developer tooling; reliability,
-      observability, and speed at scale.
-    </div>
-  </section>
-
-  <footer class="py-12 text-center text-sm" style="color: var(--muted)">
-    <div id="backToTop" class="inline-flex items-center justify-center mb-5 cursor-pointer select-none" style="
-          width: 56px;
-          height: 56px;
-          border-radius: 999px;
-          opacity: 0.55;
-          transition: opacity 0.2s ease, transform 0.2s ease,
-            background 0.2s ease;
-        " aria-label="Back to top" title="Back to top">
-      <i class="fas fa-chevron-up" style="font-size: 28px"></i>
-    </div>
-
-    <div style="opacity: 0.5">
-      © 2026 Prem Patel ~ Built with keyboard and mouse.
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-credit">Designed by Prem in Ottawa</span>
+      <a class="appearance-toggle footer-top" href="#home" aria-label="Back to top">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5m-7 7 7-7 7 7"/></svg>
+      </a>
     </div>
   </footer>
 
-  <!-- Typewriter -->
   <script>
-    const nameText = "Prem Patel";
-    const el = document.getElementById("typedName");
-    let i = 0;
+    const root = document.documentElement;
+    const appearanceToggle = document.getElementById('appearanceToggle');
+    const systemPreference = window.matchMedia('(prefers-color-scheme: dark)');
 
-    function type() {
-      if (i <= nameText.length) {
-        el.textContent = nameText.slice(0, i);
-        i++;
-        setTimeout(type, 70);
-      }
+    function applyAppearance(theme) {
+      root.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#1c1c1e' : '#ffffff';
+      appearanceToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      appearanceToggle.title = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+      appearanceToggle.setAttribute('aria-pressed', String(theme === 'dark'));
     }
-    type();
-  </script>
 
-  <!-- Topbar Scroll Up -->
-  <script>
-    const topbar = document.getElementById("topbar");
-
-    topbar?.addEventListener("click", (e) => {
-      const clickedLink = e.target.closest("a, button");
-      if (clickedLink) return;
-      document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+    applyAppearance(root.dataset.theme);
+    appearanceToggle.addEventListener('click', () => {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyAppearance(next);
+      try { localStorage.setItem('portfolio-appearance', next); } catch (_) {}
     });
-  </script>
-
-  <!-- Chevron Scroll Up -->
-  <script>
-    const backToTop = document.getElementById("backToTop");
-
-    backToTop.addEventListener("click", () => {
-      document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
+    systemPreference.addEventListener('change', (event) => {
+      let hasManualChoice = false;
+      try { hasManualChoice = ['light', 'dark'].includes(localStorage.getItem('portfolio-appearance')); } catch (_) {}
+      if (!hasManualChoice) applyAppearance(event.matches ? 'dark' : 'light');
     });
 
-    backToTop.addEventListener("mouseenter", () => {
-      backToTop.style.opacity = "0.9";
-      backToTop.style.transform = "translateY(-2px)";
-      backToTop.style.background = "rgba(255,255,255,0.04)";
-    });
-
-    backToTop.addEventListener("mouseleave", () => {
-      backToTop.style.opacity = "0.55";
-      backToTop.style.transform = "translateY(0)";
-      backToTop.style.background = "transparent";
-    });
+    const typedName = document.getElementById('typedName');
+    if (typedName && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const fullName = 'Prem Patel';
+      typedName.textContent = '';
+      let index = 0;
+      function typeNext() {
+        if (index >= fullName.length) return;
+        typedName.textContent += fullName[index++];
+        window.setTimeout(typeNext, 75);
+      }
+      typeNext();
+    }
   </script>
 </body>
-
 </html>
